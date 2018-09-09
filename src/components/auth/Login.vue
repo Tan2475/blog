@@ -1,5 +1,6 @@
 <template>
-    <div class="login flex_colum_center ">
+<div class="login">
+ <div class="login_box flex_colum_center position_center ">
         <form class="login_form flex_colum_center" action="" method="POST">
             <div class="input_box">
                 <label for="name">Name</label>
@@ -12,6 +13,8 @@
             <input type="submit" value="login">
         </form>
     </div>
+
+</div>
 </template>
 
 <script>
@@ -27,61 +30,86 @@ export default {
 
 <style>
 .login{
-    width: 5.26rem;
-    height: 3.4rem;
-    
-    position: relative;
-    top: 2rem;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
 
+.login_box{
+    width: 4.8rem;
+    height: 3rem;
+
+    min-width: 480px;
+    min-height: 300px;
+    
     justify-content: center;
 
     background: rgba(250, 250, 250, 0.82);
-    border-radius: 6px;
+    border-radius: 10px;
+
+    font-size: 14px;
 }
 
-.login_form {
-   /* width: 4.6rem; */
-   /* height: 2.1rem; */
 
+
+.login_form {
+   width: 80%;
+   height: 70%;
+
+   justify-content: space-around;
 }
 
 .input_box{
-    width: 3.8rem;
-    height: 0.4rem;
+    width: 100%;
+    height: 20%;
+    
     display: flex;
-    margin-bottom: 20px;
+
 }
 
 .input_box label{
-    display: inline-block;
-    width: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30%;
     background: #25C6FF;
     
-    text-align: center;
-    line-height: 0.4rem;
+   
     color: #fff;
+
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+
 }
 
 .input_box input{
-    width: 3rem;
-    height: 0.4rem;
+    width: 70%;
     background: #fff;
 
     text-align: center;
-    font-size: 16px;
     color: #25c6FF;
+    
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
 }
 
 .login_form input[type="submit"]{
-    width: 1.6rem;
-    height: 0.4rem;
+    width: 30%;
+    height: 20%;
     background: #25c6FF;
-    margin-top: 10px;
-    
+    border-radius: 1rem;
+
     color: #fff;
-    font-size: 18px;
     text-align: center;
     line-height: 1;
 }
+
+@media (max-width: 700px){
+    .login_box{
+        min-width: 100%;
+        background: rgba(250, 250, 250, 0);
+    }
+}
+
 </style>

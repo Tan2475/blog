@@ -9,11 +9,11 @@ import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 
 export default {
-    name:"marked",
-    props:["article"],
+    name:"morkdown",
+    // props:["article"],
     data(){
         return{
-            context:this.article
+            // context:this.article
         }
     },
     components:{

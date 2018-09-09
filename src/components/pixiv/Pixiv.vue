@@ -39,7 +39,6 @@ export default {
           return this.images[this.index] 
       },
       changeImage(index){
-
           this.index = index
           return true
       }

@@ -1,24 +1,20 @@
 <template>
-    <div class="home">
-      <el-row :type="flex">
-        <el-col :span="10" :justify="center">
-          <div class="game_link flex_colum_center position_center">
-            <div class="slogan flex_colum_center">
-              <img src="../../assets/image/GameLife.png" alt="GameLife">
-              <span>为了留住今日的回忆</span>
-            </div>
-            <ul>
-              <li class="menu_bar"  v-for="(menu_bar, index) in menu_bars" 
-              :key=index><span>{{menu_bar}}</span></li>
-            </ul>
-         </div>
-        </el-col>
-      </el-row>
+    <div class="home"> 
+      <div class="game_link flex_colum_center position_center">
+        <div class="slogan flex_colum_center">
+          <img src="../../assets/image/logo.svg" alt="GameLife">
+          <span>为了留住今日的回忆</span>
+        </div>
+        <ul class="flex_colum_center">
+          <li class="menu_bar flex_colum_center"  v-for="(menu_bar, index) in menu_bars" 
+          :key=index><span>{{menu_bar}}</span></li>
+        </ul>
+      </div>
     </div>
 </template>
 
 <script>
-import "../../assets/css/layout.css"
+import "../../assets/css/layout.css";
 
 export default {
   name: "Home",
@@ -31,65 +27,73 @@ export default {
 </script>
 
 <style>
-
-
 .home {
   width: 100%;
   height: 100%;
 }
 
 .game_link {
-  width: 4.1rem;
-  height: 4.68rem;
-  
-  min-width: 274px;
-  min-height: 312px;
+  width: 3.4rem;
+  height: 4.4rem;
 
-  justify-content: center;
+  min-width: 300px;
+  min-height: 400px;
+
+  justify-content: space-around;
 
   background: rgba(255, 255, 255, 0.82);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .slogan {
-  width: 74%;
-  margin-bottom:0.6rem;
+  width: 70%;
 }
 
-.slogan img{
- width:100%;
+.slogan img {
+  width: 100%;
 }
- 
 
-.slogan span{
+.slogan span {
+  color: rgba(27, 164, 255, 0.514);
   font-size: 12px;
-  color: rgb(27, 164, 255);
 }
-
 
 ul {
-  height: auto;
-  width: 2.7rem;
+  height: 50%;
+  width: 70%;
+
+  justify-content: space-between;
 }
 
 .menu_bar {
-  height: 0.42rem;
-  margin-bottom: 0.2rem;
+  height: 16%;
+  width: 100%;
   background-color: #25c6ff;
-  border-radius: 0.04rem;
-
-  text-align: center;
-  line-height: 0.42rem;
+  border-radius: 1rem;
+  
+  justify-content: center;
   color: #fff;
-  font-size: 0.2rem;
+
 }
+
+
+@media (max-width:700px) {
+  .game_link{
+    width:80%;
+    height:80%;
+    
+    background: rgba(255, 255, 255, 0);
+    font-size:14px;
+    
+    /* justify-content: space-between; */
+  }
+}
+
+
 .menu_bar:hover {
   background: #2699fb;
 }
 
-.menu_bar span {
-  /* text-shadow: 0 2px 6px rgb(145, 149, 168); */
-}
 </style>
 
 
