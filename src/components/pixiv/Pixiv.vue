@@ -1,13 +1,12 @@
 <template>
     <div class="pixiv">
-        <div class="pixiv_wrap flex_colun_center">
-            <h1>2018-9-2</h1>
+        <div class="pixiv_wrap flex_colum_center">
             <div class="big_image">
                 <img :src="bigSrc()" alt="">
             </div>
             <ul class="images">
                 <li v-for="(image, index) in images" :key="index" @click="changeImage(index)">
-                    <div class="mask">pid:2475</div>
+                    <div class="mask"></div>
                     <img :src=image alt="pixivImage">
                 </li>
             </ul>
@@ -48,8 +47,7 @@ export default {
 
 <style>
 .pixiv{
-  width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #fff;
 }
 
@@ -58,10 +56,7 @@ export default {
   height: 100%;
   margin: 0 auto;
   text-align: center;
-}
-
-.pixiv_wrap h1{
-    padding: 20px 0;
+  /* justify-content: center; */
 }
 
 .big_image {
@@ -79,32 +74,14 @@ export default {
   margin-top: 20px;
 }
 
-.iamges li{
-    position: relative;
+.images li{
+    width: 13.8%;
     height: 100%;
+    border-radius: 4px;
 }
 
-.images .mask{
-    position:absolute;
-    height: 1rem;
-    background: rgba(0, 0, 0, 0.219);
-    opacity: 0;
-
-    font-size: 16px;
-    color: #FFF;
-    text-align: center;
-    line-height: 1rem;
-}
-
-.images li,
-.images .mask{
-  width: 1.6rem;
-  border-radius: 4px;
-}
-
-
-.images .mask:hover{
-    opacity: 1;
+.images li:hover{
+    opacity: 0.5;
 }
 
 .images img{

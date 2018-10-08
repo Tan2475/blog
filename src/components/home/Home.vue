@@ -6,8 +6,12 @@
           <span>为了留住今日的回忆</span>
         </div>
         <ul class="flex_colum_center">
-          <li class="menu_bar flex_colum_center"  v-for="(menu_bar, index) in menu_bars" 
-          :key=index><span>{{menu_bar}}</span></li>
+          <router-link class="menu_bar" v-for="(menu_bar, index) in menu_bars" 
+                                        :key=index 
+                                        :to="menu_bar[1]"
+                                        >
+              <li class="flex_colum_center" @click="changeview">{{menu_bar[0]}}</li>
+          </router-link>
         </ul>
       </div>
     </div>
@@ -20,16 +24,22 @@ export default {
   name: "Home",
   data() {
     return {
-      menu_bars: ["文章", "每日一P", "更新说明", "关于我"]
+      menu_bars: [["文章","/postlist"], ["每日一P","/pixiv"], ["登录","/auth"], ["关于我","/me"]]
     };
-  }
+  },
+  
+  methods:{
+    changeview(){
+      this.$emit("changeview", this.menu_bars)
+    },
+  },
 };
 </script>
 
 <style>
 .home {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .game_link {
@@ -66,33 +76,39 @@ ul {
 }
 
 .menu_bar {
+  display: block;
   height: 16%;
   width: 100%;
   background-color: #25c6ff;
   border-radius: 1rem;
-  
-  justify-content: center;
   color: #fff;
-
 }
-
-
-@media (max-width:700px) {
-  .game_link{
-    width:80%;
-    height:80%;
-    
-    background: rgba(255, 255, 255, 0);
-    font-size:14px;
-    
-    /* justify-content: space-between; */
-  }
-}
-
 
 .menu_bar:hover {
   background: #2699fb;
 }
+
+li{
+  height: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .game_link {
+    width: 80%;
+    height: 80%;
+
+    background: rgba(255, 255, 255, 0);
+    font-size: 14px;
+  }
+
+  .home {
+    background: url("../../assets/image/bg.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+}
+
 
 </style>
 
