@@ -24,13 +24,13 @@ export default {
     width: 60%;
     height: 100%;
     
+    padding-top: 20px;
     margin: 0 auto;
 }
 
 @media (max-width: 700px){
     .PostList{
         width: 100%;
-        background: #f4f5f5;
     }
 }
 </style>

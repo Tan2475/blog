@@ -29,7 +29,7 @@ export default {
 <style>
 .post{
     height: 180px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.92);
     border-radius: 6px;
     
     padding: 14px;
@@ -73,6 +73,7 @@ export default {
 @media (max-width: 700px){
     .post{
         border-radius: 0;
+        border-bottom: 1px solid #ececec
     }
 }
 </style>

@@ -12,7 +12,6 @@
                 <h2><a id="Game_20"></a>Game</h2> <p>PSN：tb247200</p> <p>STEAM: 247544172</p> <p>NID: SW-7337-0277-2121</p> <h2><a id="website_structure_28"></a>website structure</h2> <ul> <li>服务器：Google Cloud</li> <li>运行环境：uwsgi+ningx</li> <li>语言：python</li> <li>框架：flask Vue</li> </ul> <h2><a id="__36"></a>拜了个拜 !!!</h2>
             </div>
         </div>
-        <!-- <div class="blur"></div> -->
     </div>
 </template>
 
@@ -32,6 +31,8 @@ export default {
     position: relative;
     width:100%;
     height: 100%;
+
+    padding-top: 20px;
 }
 
 
@@ -43,23 +44,13 @@ export default {
     margin:0 auto;
     font-size: 16px;
     line-height: 1.5;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.92);
 }
 
 .wrap{
     margin:0 20px;
 }
 
-/* .blur{
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: calc(100% - 81%);
-    width:61%;
-    height: 100%;
-    margin: 0 auto;
-   
-} */
 
 p,li{
     margin: 14px 0;
@@ -81,12 +72,6 @@ h2, h3, h4 ,h5 {
     padding: 0.2rem 0 0.1rem;
 }
 
-/* .bgfilter{
-    background: url("../../assets/image/bg.jpg") no-repeat center;
-    background-size: cover;
-    background-attachment:fixed;
-    filter: blur(10px);
-} */
 
 @media (max-width:700px){
     .content{

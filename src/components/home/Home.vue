@@ -2,10 +2,10 @@
     <div class="home"> 
       <div class="game_link flex_colum_center position_center">
         <div class="slogan flex_colum_center">
-          <img src="../../assets/image/logo.svg" alt="GameLife">
-          <span>为了留住今日的回忆</span>
+          <span class="logo">Game Life</span>
+          <p class="catchphrase">让生活变得更有趣</p>
         </div>
-        <ul class="flex_colum_center">
+        <ul class="menu_list flex_colum_center">
           <router-link class="menu_bar" v-for="(menu_bar, index) in menu_bars" 
                                         :key=index 
                                         :to="menu_bar[1]"
@@ -30,7 +30,7 @@ export default {
   
   methods:{
     changeview(){
-      this.$emit("changeview", this.menu_bars)
+      return this.$emit("changeview", this.menu_bars)
     },
   },
 };
@@ -51,7 +51,7 @@ export default {
 
   justify-content: space-around;
 
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 10px;
 }
 
@@ -59,16 +59,25 @@ export default {
   width: 70%;
 }
 
-.slogan img {
+.slogan .logo {
+  display: inline-block;
   width: 100%;
+  font-family: logo;
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #0096fa;
 }
 
-.slogan span {
-  color: rgba(27, 164, 255, 0.514);
+.slogan .catchphrase{
   font-size: 12px;
+  color: #757c80;
+  font-weight: bold;
+  margin-top: 6px;
 }
 
-ul {
+
+.menu_list {
   height: 50%;
   width: 70%;
 
@@ -88,7 +97,7 @@ ul {
   background: #2699fb;
 }
 
-li{
+.menu_list li{
   height: 100%;
   justify-content: center;
 }
@@ -106,6 +115,16 @@ li{
     background: url("../../assets/image/bg.jpg") no-repeat center;
     background-size: cover;
     background-attachment: fixed;
+  }
+
+  .home::before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    content:"";
+    display: block;
+    background-color: rgba(255, 255, 255, 0.92);
   }
 }
 

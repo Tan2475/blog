@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navigation v-if="navShow()" :style="{opacity:visible}" :nav_list="menu_bar"/>
+    <navigation v-show="navShow"  :nav_list="menu_bars"/>
     <div ref="container" class="container">
       <home @changeview="changeView" v-show="h_show"/>
       <router-view />
@@ -19,8 +19,7 @@ export default {
   data() {
     return {
       h_show: false,
-      visible: "1",
-      menu_bar:""
+      menu_bars:""
     };
   },
   components: { home, navigation },
@@ -28,20 +27,7 @@ export default {
     $route: "homeBack"
   },
   computed: {
-  },
-  methods: {
-    // 切换路由，隐藏home
-    changeView(menu_bar) {
-      this.h_show = false
-      this.menu_bar = menu_bar
-    },
-
-    // 回退检测
-    homeBack(to) {
-      this.h_show = to.name == "home" ? true : false
-    },
-
-    // 头部导航栏
+     // 头部导航栏
     navShow() {
       if (!this.h_show & !(window.location.pathname == "/auth")) {
         return true
@@ -49,6 +35,19 @@ export default {
         return false
       }
     }
+  },
+  methods: {
+    // 切换路由，隐藏home
+    changeView(menu_bars) {
+      this.h_show = false
+      this.menu_bars = menu_bars
+    },
+
+    // 回退检测
+    homeBack(to) {
+      this.h_show = to.name == "home" ? true : false
+    }
+
   },
 
 
@@ -64,11 +63,11 @@ export default {
       p = docEl.scrollTop
 
       if (docEl.clientWidth < 701) {
-        if (p > 70) {
-          this.visible = "0"
+        if (p > 1) {
+          this.n_show = false
         }
         if (t > p) {
-          this.visible = "1"
+          this.n_show = true
         }
         setTimeout(() => (t = p), 0)
       }
@@ -81,7 +80,6 @@ export default {
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-  background: #f4f5f5;
 }
 
 #app > img {
