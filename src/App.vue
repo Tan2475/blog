@@ -38,9 +38,8 @@ export default {
   },
   methods: {
     // 切换路由，隐藏home
-    changeView(menu_bars) {
+    changeView() {
       this.h_show = false
-      this.menu_bars = menu_bars
     },
 
     // 回退检测

@@ -3,8 +3,8 @@
       <nav>
         <div class="menu">
           <a class="homeback" href="/">GameLife</a>
-          <ul :class="{showbar:isShow}">
-            <router-link v-for="(item, index) in nav_list" :key="index" :to="item[1]">
+          <ul :class="{showbar:isShow}" @click="showbar">
+            <router-link v-for="(item, index) in menu_bars" :key="index" :to="item[1]">
               <li>{{item[0]}}</li>
             </router-link>
           </ul>
@@ -25,7 +25,11 @@ export default {
       isShow: false
     };
   },
-  props: ["nav_list"],
+  computed:{
+    menu_bars(){
+      return this.$store.state.menu_bars
+    }
+  },
   methods:{
     showbar(){
       this.isShow = !this.isShow

@@ -23,14 +23,16 @@ import "../../assets/css/layout.css";
 export default {
   name: "Home",
   data() {
-    return {
-      menu_bars: [["文章","/postlist"], ["每日一P","/pixiv"], ["登录","/auth"], ["关于我","/me"]]
-    };
+    return {};
   },
-  
+  computed:{
+    menu_bars(){
+      return this.$store.state.menu_bars
+    }
+  },
   methods:{
     changeview(){
-      return this.$emit("changeview", this.menu_bars)
+      return this.$emit("changeview")
     },
   },
 };

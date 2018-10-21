@@ -45,5 +45,12 @@ export default new Router({
       component: () => import('@/components/me/Me.vue')
     },
 
+    // post
+    {
+      path: '/writings',
+      name: 'writings',
+      component: ()=> import('@/components/writings/Writings.vue')
+    }
+
   ]
 })

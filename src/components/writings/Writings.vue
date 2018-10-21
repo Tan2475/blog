@@ -2,14 +2,7 @@
     <div class="writings">
         <div class="content">
             <div class="wrap">
-                <h1><a id="About_Me_0"></a>About Me</h1> 
-                <h2><a id="who_2"></a>who</h2> 
-                <h3><a id="attribute_4"></a>attribute</h3> 
-                <p>妄想系、专业直男、不善社交（貌似近期有改善）、宅（？）、好奇心旺盛</p> 
-                <h3><a id="hobby_8"></a>hobby</h3> <p><strong>游戏</strong>、动画、历史、战争、异世界（泛指一切除现实世界的地方）</p> 
-                <h2><a id="why_13"></a>why</h2> <p>本博客主要来记录个人生活中的胡思乱想，在此你也许会看到一些可笑或者引起不适的观点，那我先说声抱歉。</p> 
-                <p>博客的另一个用途是作为技术笔记，同样，在技术理解上可能存在错误，敬请指出，或者无视。</p> 
-                <h2><a id="Game_20"></a>Game</h2> <p>PSN：tb247200</p> <p>STEAM: 247544172</p> <p>NID: SW-7337-0277-2121</p> <h2><a id="website_structure_28"></a>website structure</h2> <ul> <li>服务器：Google Cloud</li> <li>运行环境：uwsgi+ningx</li> <li>语言：python</li> <li>框架：flask Vue</li> </ul> <h2><a id="__36"></a>拜了个拜 !!!</h2>
+               {{postData}}
             </div>
         </div>
     </div>
@@ -17,67 +10,89 @@
 
 <script>
 export default {
-    name:"writing",
-    data(){
-        return{
-
-        }
+  name: "writing",
+  data() {
+    return {
+      postData: ""
+    };
+  },
+  computed: {
+    post_list() {
+      return this.$store.state.post_list;
     }
-}
+  },
+  methods: {
+    update(query) {
+      const queryString = query;
+      for (let post of this.post_list) {
+        if (post.title === queryString.title) {
+          this.postData = post.content;
+        } else {
+          return "未获取到文章数据";
+        }
+      }
+    },
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {vm.update(to.query)});
+  },
+};
 </script>
 
 <style scoped>
-.writings{
-    position: relative;
-    width:100%;
-    height: 100%;
+.writings {
+  position: relative;
+  width: 100%;
+  height: 100%;
 
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
-
-.content{
-    position: relative;
-    z-index: 2;
-    width: 60%;
-    padding: 20px 0;
-    margin:0 auto;
-    font-size: 16px;
-    line-height: 1.5;
-    background: rgba(255,255,255,0.92);
+.content {
+  position: relative;
+  z-index: 2;
+  width: 60%;
+  padding: 20px 0;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 4px;
 }
 
-.wrap{
-    margin:0 20px;
+.wrap {
+  margin: 0 20px;
 }
 
-
-p,li{
-    margin: 14px 0;
+p,
+li {
+  margin: 14px 0;
 }
 
-h1{
-    padding-bottom: 0.2rem;
+h1 {
+  padding-bottom: 0.2rem;
 
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 h2 {
-    border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
 }
 
-h2, h3, h4 ,h5 {
-    padding: 0.2rem 0 0.1rem;
+h2,
+h3,
+h4,
+h5 {
+  padding: 0.2rem 0 0.1rem;
 }
 
-
-@media (max-width:700px){
-    .content{
-        width: 100%;
-        background: #fff;
-    }
+@media (max-width: 700px) {
+  .content {
+    width: 100%;
+    background: #fff;
+  }
 }
 </style>
 

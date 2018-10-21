@@ -1,16 +1,17 @@
 <template>
-    <div class="post flex_colum_center">
+    <div class="post flex_colum_center" @click="intoWriting">
         <div class="title">{{post.title}}</div>
         <div class="text">
             <p>{{post.content}}</p>
         </div>
         <div class="info">
             <div class="tips">
-                <span><i class="fa fa-tags" aria-hidden="true"></i> {{post.caterory}}</span>
+                <span><i class="fa fa-tags" aria-hidden="true"></i> {{post.category}}</span>
                 <span><i class="fa fa-calendar" aria-hidden="true"></i> {{post.date}}</span>
             </div>
             <span class="go">
-                <a href="">点击阅读 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></span>
+                <a href="/writings">点击阅读 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            </span>
         </div>
     </div>
 </template>
@@ -23,7 +24,12 @@ export default {
   data() {
     return {};
   },
-  props:["post"]
+  props:["post"],
+  methods: {
+    intoWriting(){
+      this.$router.push({name:"writings",query:{title:this.post.title}})
+    }
+  }
 };
 </script>
 

@@ -11,17 +11,60 @@ export default {
   name: "postlist",
   data() {
     return {
-        post_list:[]
+      store: null
     };
   },
-  components: {
-    post
+  components: { post },
+  computed: {
+    post_list() {
+      return this.$store.state.post_list;
+    }
+  },
+  methods: {
+    initStore(store) {
+      for (let post of this.post_list) {
+        console.log("p")
+        store.add(post);
+      }
+    },
+    putStore(store) {
+      for (let post of this.post_list) {
+        console.log("p")
+        store.put(post);
+      }
+    }
+  },
+  created() {
+    this.$store.dispatch("getPost", { req: this.$axios, url: "/v1/posts" });
   },
   mounted() {
-    this.$axios.get("/v1/posts").then(res => {
-      this.post_list = res.data
-    });
-  }
+    // 打开indexedDB
+    let request = window.indexedDB.open("blog", 1);
+
+    // 监听成功
+    request.onsuccess = event => {
+      let db = request.result;
+      let store = db.transaction(["post"], "readwrite").objectStore("post");
+      
+      // 初始化更新
+      let rq = store.get(1)
+      rq.onsuccess = (e)=>{
+        if(!rq.result){
+          this.initStore(store)
+        }else{
+          this.putStore(store)
+        }
+      }
+    };
+    // 监听更改
+    request.onupgradeneeded = event => {
+      let db = event.target.result;
+      let objectStore;
+      if (!db.objectStoreNames.contains("post")) {
+        db.createObjectStore("post", { keyPath: "id" });
+      }
+    };
+  },
 };
 </script>
 
