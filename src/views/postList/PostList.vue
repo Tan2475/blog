@@ -1,14 +1,17 @@
 <template>
-    <div class="PostList">
-        <post v-for="(post,index) in post_list" :key="index" :post="post"/>
-    </div>
+  <div class="PostList">
+    <post 
+      v-for="(post,index) in post_list" 
+      :key="index" 
+      :post="post"/>
+  </div>
 </template>
 
 <script>
-import post from "@/components/post_list/Post.vue";
+import post from "@/components/post/Post.vue";
 
 export default {
-  name: "postlist",
+  name: "PostList",
   data() {
     return {
       store: null
@@ -23,13 +26,11 @@ export default {
   methods: {
     initStore(store) {
       for (let post of this.post_list) {
-        console.log("p")
         store.add(post);
       }
     },
     putStore(store) {
       for (let post of this.post_list) {
-        console.log("p")
         store.put(post);
       }
     }
@@ -39,16 +40,16 @@ export default {
   },
   mounted() {
     // 打开indexedDB
-    let request = window.indexedDB.open("blog", 1);
+    const request = window.indexedDB.open("blog", 1);
 
     // 监听成功
-    request.onsuccess = event => {
-      let db = request.result;
-      let store = db.transaction(["post"], "readwrite").objectStore("post");
+    request.onsuccess = () => {
+      const db = request.result;
+      const store = db.transaction(["post"], "readwrite").objectStore("post");
       
       // 初始化更新
-      let rq = store.get(1)
-      rq.onsuccess = (e)=>{
+      const rq = store.get(1)
+      rq.onsuccess = ()=>{
         if(!rq.result){
           this.initStore(store)
         }else{
@@ -58,8 +59,7 @@ export default {
     };
     // 监听更改
     request.onupgradeneeded = event => {
-      let db = event.target.result;
-      let objectStore;
+      const db = event.target.result;
       if (!db.objectStoreNames.contains("post")) {
         db.createObjectStore("post", { keyPath: "id" });
       }

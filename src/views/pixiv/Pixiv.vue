@@ -1,26 +1,32 @@
 <template>
-    <div class="pixiv">
-        <div class="pixiv_wrap flex_colum_center">
-            <div class="big_image">
-                <img :src="bigSrc()" alt="">
-            </div>
-            <div class="images_mask">
-                <ul class="images">
-                    <li v-for="(image, index) in images" :key="index" @click="changeImage(index)">
-                        <div class="mask"></div>
-                        <img :src=image alt="pixivImage">
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="pixiv">
+    <div class="pixiv_wrap flex_colum_center">
+      <div class="big_image">
+        <img 
+          :src="bigSrc()" 
+          alt="">
+      </div>
+      <div class="images_mask">
+        <ul class="images">
+          <li 
+            v-for="(image, index) in images" 
+            :key="index" 
+            @click="changeImage(index)">
+            <img 
+              :src="image" 
+              alt="pixivImage">
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import "../../assets/css/layout.css";
 
 export default {
-  name: "pixiv",
+  name: "Pixiv",
   data() {
     return {
       images: {
@@ -47,7 +53,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .pixiv {
   height: 100vh;
   background: #fff;
@@ -68,7 +74,6 @@ export default {
 
 .images {
   display: flex;
-
   width: 100%;
   height: 1rem;
   margin-top: 20px;
@@ -77,7 +82,12 @@ export default {
 .images li {
   width: 13.8%;
   height: 100%;
+  margin-right: 10px;
   border-radius: 4px;
+}
+
+.images li:first-child{
+  margin-left: 10px;
 }
 
 .images li:hover {
@@ -126,7 +136,6 @@ export default {
   .images li {
     width: 25%;
     flex-shrink: 0;
-    margin-right: 2px;
   }
 }
 </style>

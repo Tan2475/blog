@@ -1,20 +1,23 @@
 <template>
-    <div class="home"> 
-      <div class="game_link flex_colum_center position_center">
-        <div class="slogan flex_colum_center">
-          <span class="logo">Game Life</span>
-          <p class="catchphrase">让生活变得更有趣</p>
-        </div>
-        <ul class="menu_list flex_colum_center">
-          <router-link class="menu_bar" v-for="(menu_bar, index) in menu_bars" 
-                                        :key=index 
-                                        :to="menu_bar[1]"
-                                        >
-              <li class="flex_colum_center" @click="changeview">{{menu_bar[0]}}</li>
-          </router-link>
-        </ul>
+  <div class="home"> 
+    <div class="game_link flex_colum_center position_center">
+      <div class="slogan flex_colum_center">
+        <span class="logo">Game Life</span>
+        <p class="catchphrase">让生活变得更有趣</p>
       </div>
+      <ul class="menu_list flex_colum_center">
+        <router-link 
+          class="menu_bar" 
+          v-for="(menu_bar, index) in menu_bars" 
+          :key=index 
+          :to="menu_bar[1]">
+          <li 
+            class="flex_colum_center" 
+            @click="changeview">{{ menu_bar[0] }}</li>
+        </router-link>
+      </ul>
     </div>
+  </div>
 </template>
 
 <script>
@@ -25,16 +28,16 @@ export default {
   data() {
     return {};
   },
-  computed:{
-    menu_bars(){
-      return this.$store.state.menu_bars
+  computed: {
+    menu_bars() {
+      return this.$store.state.menu_bars;
     }
   },
-  methods:{
-    changeview(){
-      return this.$emit("changeview")
-    },
-  },
+  methods: {
+    changeview() {
+      return this.$emit("changeview");
+    }
+  }
 };
 </script>
 
@@ -71,13 +74,12 @@ export default {
   color: #0096fa;
 }
 
-.slogan .catchphrase{
+.slogan .catchphrase {
   font-size: 12px;
   color: #757c80;
   font-weight: bold;
   margin-top: 6px;
 }
-
 
 .menu_list {
   height: 50%;
@@ -99,7 +101,7 @@ export default {
   background: #2699fb;
 }
 
-.menu_list li{
+.menu_list li {
   height: 100%;
   justify-content: center;
 }
@@ -119,18 +121,16 @@ export default {
     background-attachment: fixed;
   }
 
-  .home::before{
+  .home::before {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
-    content:"";
+    content: "";
     display: block;
     background-color: rgba(255, 255, 255, 0.92);
   }
 }
-
-
 </style>
 
 

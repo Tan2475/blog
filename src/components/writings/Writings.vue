@@ -1,16 +1,16 @@
 <template>
-    <div class="writings">
-        <div class="content">
-            <div class="wrap">
-               {{postData}}
-            </div>
-        </div>
+  <div class="writings">
+    <div class="content">
+      <div class="wrap">
+        {{ postData }}
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "writing",
+  name: "Writing",
   data() {
     return {
       postData: ""

@@ -1,38 +1,48 @@
 <template>
-    <header>
-      <nav>
-        <div class="menu">
-          <a class="homeback" href="/">GameLife</a>
-          <ul :class="{showbar:isShow}" @click="showbar">
-            <router-link v-for="(item, index) in menu_bars" :key="index" :to="item[1]">
-              <li>{{item[0]}}</li>
-            </router-link>
-          </ul>
-        <i class="fa fa-bars" aria-hidden="true" 
-        @click="showbar"></i>
-        </div>
-      </nav>
-    </header>
+  <header>
+    <nav>
+      <div class="menu">
+        <a 
+          class="homeback" 
+          href="/">GameLife</a>
+        <ul 
+          :class="{showbar:isShow}" 
+          @click="showbar">
+
+          <router-link 
+            v-for="(item, index) in menu_bars" 
+            :key="index" 
+            :to="item[1]">
+            <li>{{ item[0] }}</li>
+          </router-link>
+        </ul>
+        <i 
+          class="fa fa-bars" 
+          aria-hidden="true" 
+          @click="showbar" />
+      </div>
+    </nav>
+  </header>
 </template>
 
 <script>
-import "../../assets/css/layout.css"
+import "../../assets/css/layout.css";
 
 export default {
-  name: "navigation",
+  name: "NaviGation",
   data() {
     return {
       isShow: false
     };
   },
-  computed:{
-    menu_bars(){
-      return this.$store.state.menu_bars
+  computed: {
+    menu_bars() {
+      return this.$store.state.menu_bars;
     }
   },
-  methods:{
-    showbar(){
-      this.isShow = !this.isShow
+  methods: {
+    showbar() {
+      this.isShow = !this.isShow;
     }
   }
 };
@@ -62,8 +72,7 @@ nav {
   justify-content: space-between;
 }
 
-
-.homeback{
+.homeback {
   font-family: logo;
   font-size: 30px;
   font-weight: bold;
@@ -72,7 +81,7 @@ nav {
   color: #333;
 }
 
-.fa-bars{
+.fa-bars {
   position: absolute;
   right: 0;
   height: 50px;
@@ -90,17 +99,18 @@ nav {
   padding-right: 10px;
 }
 
-.menu, .menu ul{
+.menu,
+.menu ul {
   display: flex;
 }
 
-.menu li{
-    padding: 6px;
-    border-radius: 4px;
-    color: #333;
+.menu li {
+  padding: 6px;
+  border-radius: 4px;
+  color: #333;
 }
 
-.menu li:hover{
+.menu li:hover {
   color: #fff;
   background-color: #0096fa;
 }
@@ -110,7 +120,7 @@ nav {
     padding-bottom: 0;
   }
   nav {
-    position:unset;
+    position: unset;
     height: 50px;
   }
 
@@ -118,19 +128,19 @@ nav {
     width: 100%;
   }
 
-  .fa-bars{
+  .fa-bars {
     opacity: 1;
   }
 
-  .homeback{
+  .homeback {
     padding-left: 20px;
   }
 
-  nav .menu .showbar{
+  nav .menu .showbar {
     display: flex;
   }
 
-  .menu ul{
+  .menu ul {
     display: none;
     position: absolute;
     top: 50px;
@@ -142,9 +152,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.92);
     z-index: 10;
     border-top: 1px solid #ececec;
-    box-shadow: 0 10px 18px #66666617
+    box-shadow: 0 10px 18px #66666617;
   }
-
- 
 }
 </style>

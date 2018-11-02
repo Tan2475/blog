@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <navigation v-show="navShow"  :nav_list="menu_bars"/>
-    <div ref="container" class="container">
-      <home @changeview="changeView" v-show="h_show"/>
+    <navigation 
+      v-show="navShow"  
+      :nav_list="menu_bars"/>
+    <div 
+      ref="container" 
+      class="container">
+      <home 
+        @changeview="changeView" 
+        v-show="h_show"/>
       <router-view />
     </div>
-    <img src="./assets/image/bg.jpg" alt="tupain" >
+    <img 
+      src="./assets/image/bg.jpg" 
+      alt="tupain" >
   </div>
 </template>
 
 
 <script>
-import home from "@/components/home/Home.vue";
+import home from "@/views/home/Home.vue";
 import navigation from "@/components/navigation/Navigation.vue";
 
 export default {

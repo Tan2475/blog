@@ -1,7 +1,10 @@
 <template>
-    <div class="markBox flex_colum_center">
-        <mavon-editor v-model="context" style="height:100%" :boxShadow=false></mavon-editor>    
-    </div>
+  <div class="markBox flex_colum_center">
+    <mavon-editor 
+      v-model="context" 
+      style="height:100%" 
+      :box-shadow="false">1</mavon-editor>    
+  </div>
 </template>
 
 <script>
@@ -10,12 +13,9 @@ import 'mavon-editor/dist/css/index.css'
 import "@/assets/css/layout.css"
 
 export default {
-    name:"morkdown",
-    // props:["article"],
+    name:"MorkDown",
     data(){
-        return{
-            // context:this.article
-        }
+        return{}
     },
     components:{
         mavonEditor
@@ -31,7 +31,6 @@ export default {
 .markBox{
     width: 100%;
     height: 100%;
-    /* height: 100vh; */
 }
 
 </style>

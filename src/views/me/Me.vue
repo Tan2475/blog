@@ -1,7 +1,7 @@
 <template>
-    <div class="writings">
-        <writing />
-    </div>
+  <div class="writings">
+    <writing />
+  </div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@
 import writing from "@/components/writings/Writings.vue"
 
 export default {
-    name: "me",
+    name: "Me",
     data(){
         return{}
     },
