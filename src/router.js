@@ -13,7 +13,6 @@ export default new Router({
       name: 'home',
       component: import('@/views/home/Home.vue')
     },
-    
     // 文章列表
     {
       path: '/postlist',
@@ -23,34 +22,35 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import('@/views/postList/PostList.vue')
     },
-
     // 每日一P
     {
       path: '/pixiv',
       name: 'pixiv',
       component: () => import('@/views/pixiv/Pixiv.vue')
     },
-
     // 登录
     {
       path: '/auth',
       name: 'auth',
       component: () => import('@/views/auth/Login.vue')
     },
-
     // about me 
     {
       path: '/me',
       name: 'me',
       component: () => import('@/views/me/Me.vue')
     },
-
     // post
     {
-      path: '/writings',
-      name: 'writings',
-      component: ()=> import('@/components/writings/Writings.vue')
+      path: '/post',
+      name: 'post',
+      component: ()=> import('@/views/post/Post.vue')
+    },
+    // 编辑页面
+    {
+      path:"/editor",
+      name:'editor',
+      component:()=> import('@/views/editor/Editor.vue')
     }
-
   ]
 })

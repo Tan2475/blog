@@ -1,9 +1,9 @@
 <template>
   <div class="markBox flex_colum_center">
-    <mavon-editor 
+    <mavon-editor
+      class="editor"
       v-model="context" 
-      style="height:100%" 
-      :box-shadow="false">1</mavon-editor>    
+      :box-shadow="false" />    
   </div>
 </template>
 
@@ -14,24 +14,24 @@ import "@/assets/css/layout.css"
 
 export default {
     name:"MorkDown",
-    data(){
+    data(){ 
         return{}
     },
-    components:{
-        mavonEditor
-    },
-    methods:{
-        
-    }
+    components:{ mavonEditor },
+    methods:{}
 }
 </script>
 
-<style>
-
+<style scoped>
 .markBox{
     width: 100%;
-    height: 100%;
+  height: 100vh;
 }
 
+.editor{
+  position:fixed;
+  top:50px;
+  height:90%;
+}
 </style>
 

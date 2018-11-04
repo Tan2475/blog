@@ -1,12 +1,12 @@
 <template>
   <div class="writings">
-    <writing />
+    <post />
   </div>
 </template>
 
 <script>
 
-import writing from "@/components/writings/Writings.vue"
+import post from "@/views/post/Post.vue"
 
 export default {
     name: "Me",
@@ -14,7 +14,7 @@ export default {
         return{}
     },
     components:{
-        writing
+        post
     }
 }
 </script>

@@ -12,7 +12,9 @@ let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
-  baseURL:"http://yapi.demo.qunar.com/mock/23532"
+  // baseURL:"http://yapi.demo.qunar.com/mock/23532"
+  withCredentials: true,
+  baseURL:"http://localhost:88",
 };
 
 const _axios = axios.create(config);

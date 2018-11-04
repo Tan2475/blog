@@ -1,6 +1,6 @@
 <template>
   <div class="PostList">
-    <post 
+    <postcard 
       v-for="(post,index) in post_list" 
       :key="index" 
       :post="post"/>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import post from "@/components/post/Post.vue";
+import postcard from "@/components/postCard/PostCard.vue";
 
 export default {
   name: "PostList",
@@ -17,7 +17,7 @@ export default {
       store: null
     };
   },
-  components: { post },
+  components: { postcard },
   computed: {
     post_list() {
       return this.$store.state.post_list;

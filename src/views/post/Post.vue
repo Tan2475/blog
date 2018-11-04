@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "Writing",
+  name: "Post",
   data() {
     return {
       postData: ""

@@ -28,7 +28,7 @@
 import "../../assets/css/layout.css";
 
 export default {
-  name: "Post",
+  name: "PostCard",
   data() {
     return {};
   },
