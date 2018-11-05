@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { stringify } from 'qs';
+import axios from 'axios'
+// import { stringify } from 'qs';
 
 Vue.use(Vuex)
+
+var api = axios.create({
+  baseURL: 'http://localhost:88',
+  withCredentials: true,
+});
 
 export default new Vuex.Store({
   state: {
@@ -19,12 +25,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getPost({commit}, {req, url}){
-      const res = await req.get(url)
+    async getPost({commit}, {url}){
+      const res = await api.get(url)
       commit("changePost", res.data.data)
     },
-    async getTest({commit}, {req, url, params}){
-      const res = await req.get(url, stringify(params))
+    async getTest({commit}, {url, config}){
+      const res = await api.get(url, config)
       commit("changeTest", res.data)
     }
   }

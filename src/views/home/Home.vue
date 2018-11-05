@@ -15,7 +15,7 @@
             class="flex_colum_center" 
             @click="changeview">{{ menu_bar[0] }}</li>
         </router-link>
-        {{test}}
+        {{ test }}
       </ul>
     </div>
   </div>
@@ -28,6 +28,12 @@ export default {
   name: "Home",
   data() {
     return {
+      config:{
+        params:{
+          'title':'4',
+          'pid': '5'
+        }
+      }
     };
   },
   computed: {
@@ -44,7 +50,7 @@ export default {
     }
   },
   mounted(){
-    this.$store.dispatch('getTest', {req:this.$axios, url:'/api/test'})
+    this.$store.dispatch('getTest', {url:'/api/post', config:this.config})
   }
 
 };
