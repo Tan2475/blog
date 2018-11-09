@@ -15,7 +15,6 @@
             class="flex_colum_center" 
             @click="changeview">{{ menu_bar[0] }}</li>
         </router-link>
-        {{ test }}
       </ul>
     </div>
   </div>
@@ -27,31 +26,19 @@ import "../../assets/css/layout.css";
 export default {
   name: "Home",
   data() {
-    return {
-      config:{
-        params:{
-          'title':'4',
-          'pid': '5'
-        }
-      }
-    };
+    return {};
   },
   computed: {
     menu_bars() {
       return this.$store.state.menu_bars;
     },
-    test(){
-      return this.$store.state.test.data
-    }
   },
   methods: {
     changeview() {
       return this.$emit("changeview");
-    }
+    },
   },
-  mounted(){
-    this.$store.dispatch('getTest', {url:'/api/post', config:this.config})
-  }
+ 
 
 };
 </script>

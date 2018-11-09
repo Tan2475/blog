@@ -14,7 +14,13 @@ export default {
   name: "PostList",
   data() {
     return {
-      store: null
+      store: null,
+      config:{
+        params:{
+          title:'5',
+          pid:'1',
+        }
+      }
     };
   },
   components: { postcard },
@@ -36,7 +42,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("getPost", { req: this.$axios, url: "/v1/posts" });
+    this.$store.dispatch('getPost', {url:'/api/post', config:this.config})
   },
   mounted() {
     // 打开indexedDB

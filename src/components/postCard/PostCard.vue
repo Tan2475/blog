@@ -4,7 +4,7 @@
     @click="intoWriting">
     <div class="title">{{ post.title }}</div>
     <div class="text">
-      <p>{{ post.content }}</p>
+      <p v-html='post.content' />
     </div>
     <div class="info">
       <div class="tips">
@@ -13,10 +13,10 @@
           aria-hidden="true" />{{ post.category }}</span>
         <span><i 
           class="fa fa-calendar" 
-          aria-hidden="true" />{{ post.date }}</span>
+          aria-hidden="true" />{{ post.current_titme }}</span>
       </div>
       <span class="go">
-        <a href="/writings">点击阅读 <i 
+        <a href="/post">点击阅读 <i 
           class="fa fa-angle-double-right" 
           aria-hidden="true" /></a>
       </span>

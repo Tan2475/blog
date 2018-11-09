@@ -1,41 +1,52 @@
 <template>
   <div class="writings">
     <div class="content">
-      <div class="wrap">
-        {{ postData }}
-      </div>
+      <div 
+        class="wrap" 
+        v-html='postData' />
     </div>
   </div>
 </template>
 
 <script>
+import marked from 'marked'
+
+const rendererMD = new marked.Renderer()
+
+marked.setOptions({
+renderer: rendererMD,
+gfm: true,
+tables: true,
+breaks: true,
+pedantic: false,
+sanitize: false,
+smartLists: true,
+smartypants: false
+})
+
 export default {
   name: "Post",
   data() {
     return {
-      postData: ""
+      config:{
+        params:{
+          title:'1',
+          pid:'2',
+        }
+      },
     };
   },
   computed: {
-    post_list() {
-      return this.$store.state.post_list;
+    postData() {
+      const text = this.$store.state.post_list[0]
+      if(text.content){
+        return marked(text, {sanitize: true})
+      }
     }
   },
-  methods: {
-    update(query) {
-      const queryString = query;
-      for (let post of this.post_list) {
-        if (post.title === queryString.title) {
-          this.postData = post.content;
-        } else {
-          return "未获取到文章数据";
-        }
-      }
-    },
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {vm.update(to.query)});
-  },
+   created(){
+    this.$store.dispatch('getPost', {url:'/api/post', config:this.config}) 
+  }
 };
 </script>
 
@@ -59,35 +70,9 @@ export default {
   background: rgba(255, 255, 255, 0.92);
   border-radius: 4px;
 }
-
 .wrap {
   margin: 0 20px;
 }
-
-p,
-li {
-  margin: 14px 0;
-}
-
-h1 {
-  padding-bottom: 0.2rem;
-
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-h2 {
-  border-bottom: 1px solid #ececec;
-}
-
-h2,
-h3,
-h4,
-h5 {
-  padding: 0.2rem 0 0.1rem;
-}
-
 @media (max-width: 700px) {
   .content {
     width: 100%;
