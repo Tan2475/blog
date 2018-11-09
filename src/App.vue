@@ -49,7 +49,6 @@ export default {
     changeView() {
       this.h_show = false
     },
-
     // 回退检测
     homeBack(to) {
       this.h_show = to.name == "home" ? true : false
@@ -61,14 +60,12 @@ export default {
   mounted() {
     // 检测当前路由
     this.h_show = window.location.pathname == "/" ? true : false;
-
     // 滚动监听
     let docEl = document.documentElement,
       t = 0,
       p = 0;
     window.addEventListener("scroll", () => {
       p = docEl.scrollTop
-
       if (docEl.clientWidth < 701) {
         if (p > 1) {
           this.n_show = false

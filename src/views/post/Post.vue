@@ -1,83 +1,71 @@
 <template>
-  <div class="writings">
-    <div class="content">
-      <div 
-        class="wrap" 
-        v-html='postData' />
-    </div>
+  <div id="post">
+    <section 
+      id='markdown-preview-body'
+      v-lightCode
+      v-html='postData' />
   </div>
 </template>
 
 <script>
-import marked from 'marked'
-
-const rendererMD = new marked.Renderer()
-
-marked.setOptions({
-renderer: rendererMD,
-gfm: true,
-tables: true,
-breaks: true,
-pedantic: false,
-sanitize: false,
-smartLists: true,
-smartypants: false
-})
+import markdown from '../../util/MdParse.js'
 
 export default {
   name: "Post",
   data() {
     return {
-      config:{
-        params:{
-          title:'1',
-          pid:'2',
-        }
-      },
+      params:{
+        title:'2',
+        pid:'5',
+      }
     };
   },
   computed: {
-    postData() {
-      const text = this.$store.state.post_list[0]
-      if(text.content){
-        return marked(text, {sanitize: true})
-      }
+    postData() {    
+        const {post_list}=this.$store.state
+        const post = post_list[4]
+        if(post){
+          return markdown(post.content)
+        }   
     }
   },
    created(){
-    this.$store.dispatch('getPost', {url:'/api/post', config:this.config}) 
+    const {dispatch}=this.$store
+    dispatch('getPost', {params:this.params}) 
   }
 };
 </script>
 
-<style scoped>
-.writings {
+<style lang="scss" scoped>
+@import '../../assets/css/markdown.css';
+
+#post {
   position: relative;
-  width: 100%;
   height: 100%;
-
-  padding-top: 20px;
-}
-
-.content {
-  position: relative;
-  z-index: 2;
   width: 60%;
+  z-index: 2;
   padding: 20px 0;
-  margin: 0 auto;
-  font-size: 16px;
+  margin: 20px auto;
+  font-size: 15px;
   line-height: 1.5;
   background: rgba(255, 255, 255, 0.92);
   border-radius: 4px;
 }
-.wrap {
+#markdown-preview-body{
+  font-family: "Montserrat", "微软雅黑";
+  font-weight: 400;
+  word-spacing: 1px;
+  color: #666;
   margin: 0 20px;
 }
 @media (max-width: 700px) {
-  .content {
+  #post {
     width: 100%;
+    margin-top: 0;
     background: #fff;
   }
 }
 </style>
+
+
 
