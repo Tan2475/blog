@@ -5,17 +5,17 @@
         <a 
           class="homeback" 
           href="/">GameLife</a>
-        <ul 
-          :class="{showbar:isShow}" 
-          @click="showbar">
-
-          <router-link 
-            v-for="(item, index) in menu_bars" 
-            :key="index" 
-            :to="item[1]">
-            <li>{{ item[0] }}</li>
-          </router-link>
-        </ul>
+        <el-menu 
+          :default-active="activeIndex"
+          mode="horizontal" 
+          router >
+          <template v-for="(item, index) in menu_bars">
+            <el-menu-item 
+              :index="item[1]" 
+              :key="index"
+              style="height:50px">{{ item[0] }}</el-menu-item>            
+          </template>
+        </el-menu>
         <i 
           class="fa fa-bars" 
           aria-hidden="true" 
@@ -32,7 +32,8 @@ export default {
   name: "NaviGation",
   data() {
     return {
-      isShow: false
+      isShow: false,
+      activeIndex:'/postlist'
     };
   },
   computed: {
@@ -65,6 +66,8 @@ nav {
 }
 
 .menu {
+  display: flex;
+  justify-content: space-between;
   width: 60%;
   height: 100%;
   font-size: 16px;
@@ -73,12 +76,12 @@ nav {
 }
 
 .homeback {
-  font-family: logo;
+  font-family: 'Indie Flower', cursive;
   font-size: 30px;
   font-weight: bold;
   line-height: 50px;
   padding-left: 10px;
-  color: #333;
+  color: #0096fa;
 }
 
 .fa-bars {
@@ -92,28 +95,6 @@ nav {
   opacity: 0;
 }
 
-.menu ul {
-  width: 40%;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 10px;
-}
-
-.menu,
-.menu ul {
-  display: flex;
-}
-
-.menu li {
-  padding: 6px;
-  border-radius: 4px;
-  color: #333;
-}
-
-.menu li:hover {
-  color: #fff;
-  background-color: #0096fa;
-}
 
 @media (max-width: 700px) {
   header {
@@ -140,6 +121,7 @@ nav {
     display: flex;
   }
 
+/* 
   .menu ul {
     display: none;
     position: absolute;
@@ -153,6 +135,6 @@ nav {
     z-index: 10;
     border-top: 1px solid #ececec;
     box-shadow: 0 10px 18px #66666617;
-  }
+  } */
 }
 </style>

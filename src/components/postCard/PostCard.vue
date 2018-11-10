@@ -1,10 +1,10 @@
 <template>
   <div 
     class="post flex_colum_center" 
-    @click="intoWriting">
+    @click="intoPost">
     <div class="title">{{ post.title }}</div>
     <div class="text">
-      <p v-html='post.content' />
+      <p v-html='post.summary' />
     </div>
     <div class="info">
       <div class="tips">
@@ -16,7 +16,7 @@
           aria-hidden="true" />{{ post.current_titme }}</span>
       </div>
       <span class="go">
-        <a href="/post">点击阅读 <i 
+        <a :href="'/post/'+post.id">点击阅读 <i 
           class="fa fa-angle-double-right" 
           aria-hidden="true" /></a>
       </span>
@@ -41,46 +41,40 @@ export default {
     }
   },
   methods: {
-    intoWriting() {
+    intoPost() {
       this.$router.push({
-        name: "writings",
-        query: { title: this.post.title }
+        name: "post",
+        params: { pid: this.post.id }
       });
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 .post {
-  height: 180px;
+  max-height: 180px;
   background: rgba(255, 255, 255, 0.92);
   border-radius: 6px;
-
   padding: 14px;
   margin-bottom: 0.22rem;
-
   font-size: 14px;
   line-height: 2;
   color: rgb(0, 0, 0);
-
   align-items: flex-start;
-}
-
-.post .title {
-  font-size: 20px;
-  font-weight: bold;
-  padding-bottom: 10px;
-}
-
-.post .text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-
-  color: rgb(75, 75, 75);
+  .title {
+      font-size: 20px;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+  .text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      color: rgb(75, 75, 75);
+    }
 }
 
 .info {
@@ -95,19 +89,16 @@ export default {
 .go {
   display: inline-block;
   padding-right: 20px;
-}
-
-.go a {
-  color: #333;
-  font-weight: bold;
-}
-
-.go a:hover {
-  color: #0096fa;
-}
-
-.go i {
-  padding-left: 4px;
+  a {
+      color: #333;
+      font-weight: bold;
+    }
+  a:hover {
+      color: #0096fa;
+    }
+  i {
+      padding-left: 4px;
+    }
 }
 
 .tips i {

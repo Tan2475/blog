@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Post from '@/views/post/Post.vue'
 
 Vue.use(Router)
 
@@ -11,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: import('@/views/home/Home.vue')
+      component:() => import('@/views/home/Home.vue')
     },
     // 文章列表
     {
@@ -42,9 +43,9 @@ export default new Router({
     },
     // post
     {
-      path: '/post',
+      path: '/post/:pid',
       name: 'post',
-      component: ()=> import('@/views/post/Post.vue')
+      component: Post, props: true
     },
     // 编辑页面
     {

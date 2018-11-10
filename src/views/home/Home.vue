@@ -38,8 +38,6 @@ export default {
       return this.$emit("changeview");
     },
   },
- 
-
 };
 </script>
 
@@ -69,10 +67,9 @@ export default {
 .slogan .logo {
   display: inline-block;
   width: 100%;
-  font-family: logo;
+  font-family: 'Indie Flower', cursive;
   font-size: 50px;
   text-align: center;
-  font-weight: bold;
   color: #0096fa;
 }
 

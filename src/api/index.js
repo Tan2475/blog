@@ -11,12 +11,12 @@ const api = axios.create({
 
 export default {
   // 请求post列表
-  getPostList(params){
+  postList(params){
     return api.get(`api/postlist?${stringify(params)}`)
   },
   // 请求post文章
-  getPost(params){
-    return api.get(`api/post${stringify(params)}`)
+  post(params){
+    return api.get(`api/post?${stringify(params)}`)
   }
   
 }

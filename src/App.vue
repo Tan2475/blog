@@ -1,19 +1,15 @@
 <template>
   <div id="app">
     <navigation 
-      v-show="navShow"  
-      :nav_list="menu_bars"/>
+      v-show="navShow"/>
     <div 
       ref="container" 
       class="container">
-      <home 
-        @changeview="changeView" 
-        v-show="h_show"/>
       <router-view />
     </div>
     <img 
       src="./assets/image/bg.jpg" 
-      alt="tupain" >
+      alt="背景图" >
   </div>
 </template>
 
@@ -45,15 +41,10 @@ export default {
     }
   },
   methods: {
-    // 切换路由，隐藏home
-    changeView() {
-      this.h_show = false
-    },
     // 回退检测
     homeBack(to) {
       this.h_show = to.name == "home" ? true : false
     }
-
   },
 
 
