@@ -11,8 +11,3 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-@font-face{
-  font-family:"logo";
-  src:url('../font/方正黄草简体.ttf')
-}
