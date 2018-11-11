@@ -40,7 +40,7 @@ export default {
     pid:{
       type:Number,
       default(){
-        return '1'
+        return 1
       }
     }
   },

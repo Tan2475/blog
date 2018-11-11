@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       isShow: false,
-      activeIndex:'/postlist'
+      activeIndex:window.location.pathname
     };
   },
   computed: {

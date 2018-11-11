@@ -1,9 +1,12 @@
 <template>
-  <div class="PostList">
-    <postcard 
-      v-for="(post,index) in postList.data" 
-      :key="index" 
-      :post="post"/>
+  <div 
+    class="PostList" 
+    v-loading.fullscreen.lock='fullscreenLoading'>
+    <template v-for="(post,index) in postList.data" >
+      <postcard 
+        :key="index" 
+        :post="post"/>
+    </template>
     <el-pagination
       class="pagination"
       background
@@ -26,22 +29,29 @@ export default {
       params:{
         pageNo:1,
         pageSize:10,
-      }
-    };
+      },
+      fullscreenLoading: true,
+    };  
   },
   components: { postcard },
   computed: {
-    ...mapState(['postList'])
+    ...mapState(['postList']),
   },
   methods: {
     ...mapActions(['fetchPostList']),
     changePage(current_page){
       this.params.pageNo = current_page
       this.fetchPostList(this.params)
-    }
+    },
+    onScreenLoading(){
+      this.fetchPostList(this.params)
+      if(this.postList.data !== []){
+        this.fullscreenLoading = false
+      }
+    } 
   },
   created() {
-    this.fetchPostList(this.params)
+    this.onScreenLoading()
   }
 };
 </script>
