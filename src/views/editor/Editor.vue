@@ -6,32 +6,33 @@
         v-model="title"
         placeholder="请输入标题">
       <div class="el-group">
-        <el-select
-          allow-create
-          default-first-option
-          filterable
-          v-model="category"
-          placeholder="请选择文章类型">
-          <el-option
-            v-for="item in defaultCategory"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"/>
-        </el-select>
-        <el-select 
-          allow-create
-          default-first-option
-          filterable
-          multiple
-          v-model="mark"
-          placeholder="请输入文章标签"
-          :fetch-suggestions="querySearch">
-          <el-option
-            v-for="item in defaultMark"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"/>
-        </el-select>
+        <div>
+          <el-select
+            allow-create
+            default-first-option
+            filterable
+            v-model="category"
+            placeholder="请选择文章类型">
+            <el-option
+              v-for="item in defaultCategory"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"/>
+          </el-select>
+          <el-select 
+            allow-create
+            default-first-option
+            filterable
+            multiple
+            v-model="markList"
+            placeholder="请输入文章标签">
+            <el-option
+              v-for="item in defaultMark"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"/>
+          </el-select>
+        </div>
         <div class="el-buttons">
           <el-button 
             size="mini"
@@ -39,27 +40,33 @@
           <el-button 
             size="mini"
             type="primary" 
-            :loading="true">保存</el-button>
+            :loading="loading"
+            @click="savePost">保存</el-button>
         </div>
       </div>
     </div>
     <mavon-editor
       :toolbars-flag="false"
       class="editor"
-      v-model="context" 
+      v-model="content" 
       :box-shadow="false" />    
   </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import "@/assets/css/layout.css"
+
+const moment = require('moment')
+const { mapState, mapActions } = createNamespacedHelpers('post')
 
 export default {
     name:"MorkDown",
     data(){ 
         return{
+          content:'',
           title:'',
           defaultCategory:[
             {
@@ -75,26 +82,53 @@ export default {
               label:"趣闻"
             },
           ],
-          category:[],
-          mark:[]
+          defaultMark:[],
+          category:'',
+          markList:[],
+          loading:false
         }
     },
     components:{ mavonEditor },
-    methods:{}
+    computed: {
+      ...mapState(['upStatus']),
+       mark(){
+        return this.markList.join()
+      },
+      summary(){
+        const patter = />\s*\S*/
+        return this.content.match(patter)[0].slice(2)
+      },
+      currentTime(){
+        return moment().format('YYYY-MM-DD')
+      }
+    },
+    methods:{
+      ...mapActions(['upDatePost']),
+      savePost(){
+        const {
+          content,title,mark,category,summary,currentTime
+        } = this        
+        this.upDatePost({current_time: currentTime,title,category,mark,content,summary})
+      }
+    },
 }
 </script>
 
 <style lang="scss" >
+
 .markBox{
   position: fixed;
   top: 50px;
   width: 100%;
   height: 100%;
 }
+
 .editor{
   width:80%;
-  height: 100%;
+  height: calc(100% - 60px);
+  padding-bottom: 60px;
 }
+
 .postInfo{
   width: 80%;
   .post_title{
@@ -111,18 +145,18 @@ export default {
     }
   }
   .el-group{
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     background: #fff;
     input.el-input__inner{
       border-radius: 0;
       border: 0;
     }
     .el-buttons{
-      align-self: center;
+      margin-right: 20px;
     }
   }
 }
-
-
 </style>
 

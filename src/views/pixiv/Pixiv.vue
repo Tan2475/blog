@@ -95,7 +95,7 @@ export default {
 }
 
 .images img {
-  width: 116%;
+  width: 120%;
 }
 
 .pixiv,
@@ -134,6 +134,7 @@ export default {
   }
 
   .images li {
+    height: 50px;
     width: 25%;
     flex-shrink: 0;
   }

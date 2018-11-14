@@ -1,24 +1,29 @@
 <template>
-  <div class="writings">
-    <post />
+  <div class="me">
+    <PostDetail :detail="user"/>
   </div>
 </template>
 
 <script>
+import {createNamespacedHelpers} from "vuex"
+import PostDetail from "@/components/postDetail/PostDetail.vue"
 
-import post from "@/views/post/Post.vue"
+const {mapState, mapActions} = createNamespacedHelpers('user')
 
 export default {
     name: "Me",
     data(){
         return{}
     },
-    components:{
-        post
+    components:{ PostDetail },
+    computed:{
+      ...mapState(['user'])
+    },
+    methods: {
+      ...mapActions(['fetchUser'])
+    },  
+    created () {
+      this.fetchUser()
     }
 }
 </script>
-
-<style>
-
-</style>

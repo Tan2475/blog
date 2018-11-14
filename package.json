@@ -9,10 +9,13 @@
     "local": "vue-cli-service serve --mode local"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-beta.47",
     "babel": "^6.23.0",
+    "babel-loader": "^8.0.0",
     "element-ui": "^2.4.5",
     "marked": "^0.5.1",
     "mavon-editor": "^2.6.17",
+    "moment": "^2.22.2",
     "node-sass": "^4.10.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
@@ -23,6 +26,7 @@
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "axios": "^0.18.0",
+    "sass-loader": "^7.1.0",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-element": "^1.0.0",
     "vue-template-compiler": "^2.5.17"

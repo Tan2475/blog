@@ -6,6 +6,7 @@
           class="homeback" 
           href="/">GameLife</a>
         <el-menu 
+          class="menu_item"
           :default-active="activeIndex"
           mode="horizontal" 
           router >
@@ -16,10 +17,6 @@
               style="height:50px">{{ item[0] }}</el-menu-item>            
           </template>
         </el-menu>
-        <i 
-          class="fa fa-bars" 
-          aria-hidden="true" 
-          @click="showbar" />
       </div>
     </nav>
   </header>
@@ -50,7 +47,7 @@ export default {
 </script>
 
 
-<style >
+<style lang="scss">
 header {
   padding-bottom: 50px;
 }
@@ -102,39 +99,22 @@ nav {
   }
   nav {
     position: unset;
-    height: 50px;
+    height: 100px;
   }
 
   .menu {
     width: 100%;
-  }
-
-  .fa-bars {
-    opacity: 1;
+    flex-wrap: wrap;
   }
 
   .homeback {
     padding-left: 20px;
   }
-
-  nav .menu .showbar {
+  .menu_item{
+    width: 100vw;
     display: flex;
+    justify-content: center;
   }
-
-/* 
-  .menu ul {
-    display: none;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    padding: 10px 0;
-    justify-content: space-around;
-    background-color: rgba(255, 255, 255, 0.92);
-    z-index: 10;
-    border-top: 1px solid #ececec;
-    box-shadow: 0 10px 18px #66666617;
-  } */
+  ::-webkit-scrollbar{width:0;height:0}
 }
 </style>

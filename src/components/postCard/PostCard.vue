@@ -13,7 +13,7 @@
           aria-hidden="true" />{{ post.category }}</span>
         <span><i 
           class="fa fa-calendar" 
-          aria-hidden="true" />{{ post.current_titme }}</span>
+          aria-hidden="true" />{{ post.current_time }}</span>
       </div>
       <span class="go">
         <a :href="'/post/'+post.id">点击阅读 <i 
@@ -102,11 +102,11 @@ export default {
 }
 
 .tips i {
-  padding-right: 10px;
+  padding-right: 4px;
 }
 
 .tips .fa-calendar {
-  padding-left: 1rem;
+  padding-left: 0.5rem;
 }
 
 @media (max-width: 700px) {
