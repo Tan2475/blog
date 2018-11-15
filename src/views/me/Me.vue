@@ -1,6 +1,6 @@
 <template>
   <div class="me">
-    <PostDetail :detail="user"/>
+    <PostDetail :detail="post"/>
   </div>
 </template>
 
@@ -17,13 +17,13 @@ export default {
     },
     components:{ PostDetail },
     computed:{
-      ...mapState(['user'])
+      ...mapState(['post'])
     },
     methods: {
-      ...mapActions(['fetchUser'])
+      ...mapActions(['fetchUserPost'])
     },  
     created () {
-      this.fetchUser()
+      this.fetchUserPost()
     }
 }
 </script>

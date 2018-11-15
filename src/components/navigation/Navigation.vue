@@ -115,6 +115,5 @@ nav {
     display: flex;
     justify-content: center;
   }
-  ::-webkit-scrollbar{width:0;height:0}
 }
 </style>

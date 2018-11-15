@@ -51,7 +51,7 @@ export default {
       }
     },
     markList(){
-      return this.detail.mark.split(',')
+      return this.detail.mark.split(",")
     }
   },
 };

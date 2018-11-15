@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/axios'
 import './plugins/element.js'
 import './plugins/MdHighLight.js'
+import './permission.js'
 
 
 Vue.config.productionTip = false
