@@ -44,7 +44,6 @@ const permission = {
     routers: constantRouterMap,
     addRouters: []
   },
-
   mutations:{
     SET_ROUTERS(state, routers){
       state.addRouters = routers

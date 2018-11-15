@@ -25,8 +25,8 @@ export const constantRouterMap = [
   },
    // 登录
    {
-    path: '/auth',
-    name: 'auth',
+    path: '/login',
+    name: 'login',
     component: () => import('@/views/auth/Login.vue')
   },
   // 文章列表

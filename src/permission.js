@@ -1,3 +1,4 @@
+import { Message } from "element-ui"
 import store from "@/store/index.js"
 import router,{ constantRouterMap } from "@/router.js"
 import { getToken } from "@/util/auth"
@@ -21,7 +22,8 @@ router.beforeEach((to, from, next) => {
     if(tmp){
       next()
     }else{
-      next(`/?redirect=${to.path}`)
+      Message.warning("请先登录")
+      next(`/login?redirect=${to.path}`)
     }
   }
 })
