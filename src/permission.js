@@ -18,7 +18,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }else{
-    const tmp = constantRouterMap.some(router=>router.path === to.path)
+    const tmp = constantRouterMap.some(router=>router.name === to.name)
     if(tmp){
       next()
     }else{

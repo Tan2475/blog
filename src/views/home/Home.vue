@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     menu_bars() {
-      return this.$store.state.menu_bars;
+      return this.$store.getters.menu_bars;
     },
   },
   methods: {
