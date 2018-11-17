@@ -5,10 +5,11 @@ import post from './modules/post'
 import user from './modules/user'
 import permission from './modules/permission'
 import getter from "./getters"
+
 Vue.use(Vuex)
 
 const { options:{routes} } = router
-
+ 
 export default new Vuex.Store({
   modules:{post, user, permission},
   state: {

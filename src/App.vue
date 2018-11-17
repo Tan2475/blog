@@ -5,7 +5,9 @@
     <div 
       ref="container" 
       class="container">
-      <router-view />
+      <transition name="view">
+        <router-view />
+      </transition>
     </div>
     <img 
       src="./assets/image/bg.jpg" 
@@ -88,6 +90,14 @@ export default {
 .container {
   position: relative;
   z-index: 2;
+}
+
+.view-enter,.view-leave-to{
+  opacity: 0;
+}
+
+.view-enter-active,.view-leave-active{
+  transition:all 0.3s ease
 }
 
 @media (max-width: 700px) {

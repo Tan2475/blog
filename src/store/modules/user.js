@@ -2,7 +2,8 @@ import userApi from "@/api/user.js"
 import { Message } from "element-ui"
 import { getToken, setToken, removeToken } from "@/util/auth.js"
 
-const { userPost, loginByUSername, getUserInfo } = userApi
+const { userPost, loginByUsername, getUserInfo } = userApi
+
 
 const state = {
   post:{},
@@ -38,13 +39,16 @@ const actions = {
   },
 
   // 用户登录
-  LoginByUSername({commit}, userInfo){
-    const username = userInfo.username.tirm()
+  LoginByUsername({commit}, userInfo){
+    const username = userInfo.userName
+    const password = userInfo.pass
+
     return new Promise((resolve, reject)=>{
-      loginByUSername(username, userInfo.password).then(response=>{
+      loginByUsername({username, password}).then(response=>{
         const data = response.data
         commit("SET_TOKEN", data.token)
         setToken(data.token)
+        Message.success("登录成功")
         resolve()
       }).catch(error=>{
         reject(error)
@@ -65,6 +69,7 @@ const actions = {
         }else{
           reject("error, null roles")
         }
+        resolve(response)
       })
     })
   },

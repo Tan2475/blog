@@ -7,11 +7,11 @@ import { getToken } from "@/util/auth"
 router.beforeEach((to, from, next) => {
   if(getToken()){
     if(store.getters.roles.length === 0){
-      store.user.dispatch("GetUserInfo").then(response=>{
-        const roles = response.data.roles
-        store.permission.dispatch("generateRouter",roles).then(()=>{
+      store.dispatch("user/GetUserInfo").then(response=>{
+        const data = response.data
+        store.dispatch("permission/generateRouter", data).then(()=>{
           router.addRoutes(store.getters.addRouters)
-          to({...to,replace:true})
+          next({...to,replace:true})
         })
       })
     }else{

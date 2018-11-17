@@ -54,7 +54,7 @@ export const asyncRouterMap = [
   {
   path:"/editor",
   name:'editor',
-  meta: {roles:["admin"]},
+  meta: {roles:["admin", "tanbin"]},
   component:()=> import('@/views/editor/Editor.vue')
   },
   // 404页面

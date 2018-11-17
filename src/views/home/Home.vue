@@ -1,23 +1,25 @@
 <template>
-  <div class="home"> 
-    <div class="game_link flex_colum_center position_center">
-      <div class="slogan flex_colum_center">
-        <span class="logo">Game Life</span>
-        <p class="catchphrase">让生活变得更有趣</p>
+  <transition name="home">
+    <div class="home"> 
+      <div class="game_link flex_colum_center position_center">
+        <div class="slogan flex_colum_center">
+          <span class="logo">Game Life</span>
+          <p class="catchphrase">让生活变得更有趣</p>
+        </div>
+        <ul class="menu_list flex_colum_center">
+          <router-link 
+            class="menu_bar" 
+            v-for="(menu_bar, index) in menu_bars" 
+            :key=index 
+            :to="menu_bar[1]">
+            <li 
+              class="flex_colum_center" 
+              @click="changeview">{{ menu_bar[0] }}</li>
+          </router-link>
+        </ul>
       </div>
-      <ul class="menu_list flex_colum_center">
-        <router-link 
-          class="menu_bar" 
-          v-for="(menu_bar, index) in menu_bars" 
-          :key=index 
-          :to="menu_bar[1]">
-          <li 
-            class="flex_colum_center" 
-            @click="changeview">{{ menu_bar[0] }}</li>
-        </router-link>
-      </ul>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -103,6 +105,14 @@ export default {
 .menu_list li {
   height: 100%;
   justify-content: center;
+}
+
+.home-enter,.home-leave-to{
+  opacity: 0;
+}
+
+.home-enter-active,.home-leave-active{
+  transition:all 0.3s ease
 }
 
 @media (max-width: 700px) {

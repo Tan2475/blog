@@ -1,7 +1,7 @@
 /*
  * @Author: tanbin
  * @Date: 2018-11-15 12:02:08
- * @LastEditTime: 2018-11-15 15:09:08
+ * @LastEditTime: 2018-11-17 22:25:26
  */
 
 import { constantRouterMap, asyncRouterMap } from "@/router.js"
@@ -13,7 +13,7 @@ import { constantRouterMap, asyncRouterMap } from "@/router.js"
  */
 function hasPermission(roles, route){
   if(route.meta && route.meta.roles){
-    roles.some(role=>route.meta.roles.includes(role))
+    return roles.some(role=>route.meta.roles.includes(role))
   }else{
     return true
   }
@@ -26,7 +26,7 @@ function hasPermission(roles, route){
  */
 function filterAsyncRouter(routes, roles){
   const res = []
-  routes.foreach(route=>{
+  routes.forEach(route=>{
     const tmp = {...route}
     if(hasPermission(roles,tmp)){
       if(tmp.childred){
@@ -35,11 +35,11 @@ function filterAsyncRouter(routes, roles){
       res.push(tmp)
     }
   })
-
   return res
 }
 
 const permission = {
+  namespaced: true,
   state:{
     routers: constantRouterMap,
     addRouters: []

@@ -32,9 +32,13 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex"
+const { mapActions } = createNamespacedHelpers("user")
+
 export default {
   name: "Logins",
   data() {
+    // 验证用户名
     const validateName = (rule, value, callback) => {
       if(value === ""){
         callback(new Error("请输入用户名"));
@@ -42,6 +46,7 @@ export default {
         callback();
       }
     }
+    // 验证密码
     const validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
@@ -61,10 +66,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["LoginByUsername"]),
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          this.LoginByUsername(this.ruleForm).then(()=>{
+            this.$router.push({name:"home"})
+          })
         } else {
           return false;
         }

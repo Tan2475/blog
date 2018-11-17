@@ -40,7 +40,7 @@ export default {
     detail:{
       type:Object,
       default(){
-        return 
+        return {}
       }
     }
   },
@@ -51,7 +51,9 @@ export default {
       }
     },
     markList(){
-      return this.detail.mark.split(",")
+      if(this.detail.mark !== ""){
+        return this.detail.mark.split(",")
+      }
     }
   },
 };

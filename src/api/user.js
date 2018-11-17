@@ -1,7 +1,7 @@
 /*
  * @Author: tanbin
  * @Date: 2018-11-15 10:47:13
- * @LastEditTime: 2018-11-15 11:32:19
+ * @LastEditTime: 2018-11-17 19:41:45
  */
 
 import { stringify } from 'qs'
@@ -31,7 +31,10 @@ export default {
    * @param {object} 
    */
   loginByUsername(params){
-    return api.post('api/user/login', stringify(params))
+    return api({
+     url: 'api/user/login',
+     auth: { ...params },
+    })
   },
 
   /**
@@ -40,7 +43,14 @@ export default {
    * @return: 
    */
   getUserInfo(params){
-    return api.post('api/user/Info', stringify(params))    
+    return api({
+      method: 'get',
+      url:'api/user/info',
+      auth: {
+        username: params,
+        password: ""
+      }
+    })    
   }
 
 }
