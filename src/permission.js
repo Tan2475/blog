@@ -1,7 +1,7 @@
 import { Message } from "element-ui"
 import store from "@/store/index.js"
 import router,{ constantRouterMap } from "@/router.js"
-import { getToken } from "@/util/auth"
+import { getToken, removeToken } from "@/util/auth"
 
 
 router.beforeEach((to, from, next) => {
@@ -13,6 +13,10 @@ router.beforeEach((to, from, next) => {
           router.addRoutes(store.getters.addRouters)
           next({...to,replace:true})
         })
+      }).catch(()=>{
+        Message.error("token失效，请重新登录")
+        removeToken()
+        next(`/login?redirect=${to.path}`)
       })
     }else{
       next()

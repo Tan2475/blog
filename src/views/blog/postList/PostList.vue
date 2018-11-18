@@ -63,12 +63,12 @@ export default {
   padding-top: 20px;
   margin: 0 auto;
 }
-
 .pagination{
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
+
 @media (max-width: 700px) {
   .PostList {
     width: 100%;

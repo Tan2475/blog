@@ -31,10 +31,11 @@
   margin-left:20px;
 }
 .hljs{
-  font-family:'微软雅黑', 'Montserrat';
+  font-size: 14px;
   border-radius:4px;
   margin: 15px 0;
 }
+
 .paragraph{
   margin-top: 22px;
   margin-bottom: 22px;

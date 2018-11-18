@@ -1,7 +1,5 @@
 <template>
-  <transition name="post">
-    <PostDetail :detail="post"/>
-  </transition>
+  <PostDetail :detail="post"/>
 </template>
 
 <script>
@@ -40,16 +38,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.post-enter,.post-leave-to{
-  transform: translateY(-20px);
-  opacity: 0;
-}
 
-.post-enter-active,.post-leave-active{
-  transition:all 0.3s ease
-}
-</style>
 
 
 

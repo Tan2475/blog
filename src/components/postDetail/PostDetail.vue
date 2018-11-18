@@ -17,7 +17,7 @@
           <span><i 
             class="fa fa-calendar" 
             aria-hidden="true" 
-            style='padding-left:40px'/>{{ detail.current_time }}</span>
+            style='padding-left:40px'/>{{ currentTime }}</span>
         </div>
       </div>
     </div>
@@ -30,6 +30,7 @@
 
 <script>
 import markdown from '@/util/MdParse.js'
+import {getTime} from "@/util/time"
 
 export default {
   name: "PostDetail",
@@ -46,14 +47,20 @@ export default {
   },
   computed: {
     postData(){
-      if(this.detail){
-        return markdown(this.detail.content)
+      const content = this.detail.content
+      if(content){
+        return markdown(content)
       }
     },
     markList(){
-      if(this.detail.mark !== ""){
-        return this.detail.mark.split(",")
+      const mark = this.detail.mark
+      if(mark){
+        return mark.split(",")
       }
+    },
+    currentTime(){
+      const time = this.detail.current_time
+      return getTime(time)
     }
   },
 };

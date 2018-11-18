@@ -13,7 +13,7 @@ const { options:{routes} } = router
 export default new Vuex.Store({
   modules:{post, user, permission},
   state: {
-    menu: [["文章","/postlist"], ["每日一P","/pixiv"], ["编辑",'/editor'], ["登录","/login"], ["关于我","/me"]],
+    menu: [["文章","/postlist"], ["每日一P","/pixiv"],["搜索","/search"], ["关于我","/me"],],
   },
   getters:{
     ...getter,

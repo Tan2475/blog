@@ -14,5 +14,8 @@ export default {
   upLoad(params){
     return api.post('api/post', stringify(params))
   },
-  
+  // 搜索post
+  search(params){
+    return api.get(`/api/post/search?${stringify(params)}`)
+  }
 }

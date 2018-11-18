@@ -23,20 +23,20 @@
 </template>
 
 <script>
-import "../../assets/css/layout.css";
+import "@/assets/css/layout.css";
 
 export default {
   name: "Pixiv",
   data() {
     return {
       images: {
-        pixiv1: require("../../assets/image/1.jpg"),
-        pixiv2: require("../../assets/image/2.jpg"),
-        pixiv3: require("../../assets/image/3.jpg"),
-        pixiv4: require("../../assets/image/4.jpg"),
-        pixiv5: require("../../assets/image/5.jpg"),
-        pixiv6: require("../../assets/image/6.jpg"),
-        pixiv7: require("../../assets/image/7.jpg")
+        pixiv1: require("@/assets/image/1.jpg"),
+        pixiv2: require("@/assets/image/2.jpg"),
+        pixiv3: require("@/assets/image/3.jpg"),
+        pixiv4: require("@/assets/image/4.jpg"),
+        pixiv5: require("@/assets/image/5.jpg"),
+        pixiv6: require("@/assets/image/6.jpg"),
+        pixiv7: require("@/assets/image/7.jpg")
       },
       index: "pixiv1"
     };

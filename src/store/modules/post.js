@@ -1,7 +1,7 @@
 import postApi from '@/api/post.js'
 import { Message } from 'element-ui'
 
-const { postList, post, upLoad } = postApi
+const { postList, post, upLoad, search } = postApi
 
 const state = {
   postList:{
@@ -50,6 +50,14 @@ const actions = {
       Message.success('上传成功')
     }else{
       Message.error('请求错误')
+    }
+  },
+  async searchPost({commit}, params){
+    const res = await search(params)
+    if(res.data.success){
+      commit('SAVEPOSTLIST', res.data)
+    }else{
+      Message.error('未搜索到相关文章，请更换关键字')
     }
   }
 }

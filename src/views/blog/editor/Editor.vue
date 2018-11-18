@@ -58,8 +58,8 @@ import { createNamespacedHelpers } from 'vuex'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import "@/assets/css/layout.css"
+import {setTime} from "@/util/time"
 
-const moment = require('moment')
 const { mapState, mapActions } = createNamespacedHelpers('post')
 
 export default {
@@ -99,7 +99,7 @@ export default {
         return this.content.match(patter)[0].slice(2)
       },
       currentTime(){
-        return moment().format('YYYY-MM-DD')
+        return setTime()
       }
     },
     methods:{
@@ -114,7 +114,7 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 
 .markBox{
   position: fixed;

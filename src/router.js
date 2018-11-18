@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Post from '@/views/post/Post.vue'
+import Post from '@/views/blog/post/Post.vue'
 
 Vue.use(Router)
 
@@ -9,13 +9,13 @@ export const constantRouterMap = [
    {
     path: '/',
     name: 'home',
-    component:() => import('@/views/home/Home.vue')
+    component:() => import('@/views/blog/home/Home.vue')
   },
    // about me 
    {
     path: '/me',
     name: 'me',
-    component: () => import('@/views/me/Me.vue')
+    component: () => import('@/views/blog/me/Me.vue')
   },
   // post
   {
@@ -27,26 +27,32 @@ export const constantRouterMap = [
    {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/auth/Login.vue')
+    component: () => import('@/views/blog/auth/Login.vue')
   },
   // 文章列表
   {
     path: '/postlist',
     name: 'postlist',
-    component: () => import('@/views/postList/PostList.vue')
+    component: () => import('@/views/blog/postList/PostList.vue')
   },
   // 每日一P
   {
     path: '/pixiv',
     name: 'pixiv',
-    component: () => import('@/views/pixiv/Pixiv.vue')
+    component: () => import('@/views/blog/pixiv/Pixiv.vue')
   },
+  // 搜索页面
+  {
+    path:"/search",
+    name: "search",
+    component: ()=>import("@/views/blog/search/Search.vue")
+  }
 ]
  
 export const asyncRouterMap = [
   {
     path: '/404',
-    component: () => import('@/views/errorPage/404'),
+    component: () => import('@/views/blog/errorPage/404'),
     name: 'Page404',
     meta: { title: 'page404', noCache: true }
   },
@@ -55,7 +61,7 @@ export const asyncRouterMap = [
   path:"/editor",
   name:'editor',
   meta: {roles:["admin", "tanbin"]},
-  component:()=> import('@/views/editor/Editor.vue')
+  component:()=> import('@/views/blog/editor/Editor.vue')
   },
   // 404页面
   {path:'*',redirect:'/404', hidden: true}

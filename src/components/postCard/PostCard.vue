@@ -1,33 +1,32 @@
 <template>
-  <transition name="postcard">
-    <div 
-      class="post flex_colum_center" 
-      @click="intoPost">
-      <div class="title">{{ post.title }}</div>
-      <div class="text">
-        <p v-html='post.summary' />
-      </div>
-      <div class="info">
-        <div class="tips">
-          <span><i 
-            class="fa fa-tags" 
-            aria-hidden="true" />{{ post.category }}</span>
-          <span><i 
-            class="fa fa-calendar" 
-            aria-hidden="true" />{{ post.current_time }}</span>
-        </div>
-        <span class="go">
-          <a :href="'/post/'+post.id">点击阅读 <i 
-            class="fa fa-angle-double-right" 
-            aria-hidden="true" /></a>
-        </span>
-      </div>
+  <div 
+    class="post flex_colum_center" 
+    @click="intoPost">
+    <div class="title">{{ post.title }}</div>
+    <div class="text">
+      <p v-html='post.summary' />
     </div>
-  </transition>
+    <div class="info">
+      <div class="tips">
+        <span><i 
+          class="fa fa-tags" 
+          aria-hidden="true" />{{ post.category }}</span>
+        <span><i 
+          class="fa fa-calendar" 
+          aria-hidden="true" />{{ currentTime }}</span>
+      </div>
+      <span class="go">
+        <a :href="'/post/'+post.id">点击阅读 <i 
+          class="fa fa-angle-double-right" 
+          aria-hidden="true" /></a>
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
 import "../../assets/css/layout.css";
+import {getTime} from "@/util/time"
 
 export default {
   name: "PostCard",
@@ -40,6 +39,12 @@ export default {
       default(){
         return {}
       }
+    }
+  },
+  computed:{
+    currentTime(){
+      const time = this.post.current_time
+      return getTime(time)
     }
   },
   methods: {
@@ -109,14 +114,6 @@ export default {
 
 .tips .fa-calendar {
   padding-left: 0.5rem;
-}
-
-.postcard-enter,.postcard-leave-to{
-  transform: translateX(-20px);
-  opacity: 0;
-}
-.postcard-enter-active,.postcard-leave-active{
-  transition:all 0.3s ease
 }
 
 @media (max-width: 700px) {

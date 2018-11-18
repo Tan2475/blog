@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import "../../assets/css/layout.css";
+import "@/assets/css/layout.css";
 import logins from '@/components/loginform/logins.vue';
 
 export default {
@@ -50,7 +50,7 @@ export default {
 
 @media (max-width: 700px) {
   .login {
-    background: url("../../assets/image/bg.jpg") no-repeat center;
+    background: url("../../../assets/image/bg.jpg") no-repeat center;
     background-size: cover;
     background-attachment: fixed;
   }

@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <navigation 
-      v-show="navShow"/>
-    <div 
-      ref="container" 
-      class="container">
-      <transition name="view">
-        <router-view />
-      </transition>
+    <div
+      class="blog">
+      <navigation 
+        v-show="navShow"/>
+      <div 
+        ref="container" 
+        class="container">
+        <transition 
+          name="view"
+          mode="out-in"
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+          :duration="300">
+          <router-view />
+        </transition>
+      </div>
     </div>
     <img 
       src="./assets/image/bg.jpg" 
@@ -17,7 +25,6 @@
 
 
 <script>
-import home from "@/views/home/Home.vue";
 import navigation from "@/components/navigation/Navigation.vue";
 
 export default {
@@ -25,10 +32,10 @@ export default {
   data() {
     return {
       h_show: false,
-      menu_bars:""
+      menu_bars:"",
     };
   },
-  components: { home, navigation },
+  components: { navigation },
   watch: {
     $route: "homeBack"
   },
@@ -52,23 +59,7 @@ export default {
 
   mounted() {
     // 检测当前路由
-    this.h_show = window.location.pathname == "/" ? true : false;
-    // 滚动监听
-    let docEl = document.documentElement,
-      t = 0,
-      p = 0;
-    window.addEventListener("scroll", () => {
-      p = docEl.scrollTop
-      if (docEl.clientWidth < 701) {
-        if (p > 1) {
-          this.n_show = false
-        }
-        if (t > p) {
-          this.n_show = true
-        }
-        setTimeout(() => (t = p), 0)
-      }
-    })
+    this.h_show = window.location.pathname == "/" ? true : false;  
   }
 };
 </script>
@@ -92,13 +83,6 @@ export default {
   z-index: 2;
 }
 
-.view-enter,.view-leave-to{
-  opacity: 0;
-}
-
-.view-enter-active,.view-leave-active{
-  transition:all 0.3s ease
-}
 
 @media (max-width: 700px) {
   #app > img {
