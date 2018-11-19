@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { Message } from "element-ui"
 import { createNamespacedHelpers } from "vuex"
 const { mapActions } = createNamespacedHelpers("user")
 
@@ -70,9 +71,15 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.LoginByUsername(this.ruleForm).then(()=>{
-            this.$router.push({name:"home"})
-          })
+          this.LoginByUsername(this.ruleForm).then(res => {
+            if(res.data.token){
+              Message.success("登录成功")
+              this.$router.push({name:"home"})
+            }else{
+              Message.error("账号或密码有误，请重新登录")
+              this.resetForm(formName)
+            }
+          }).catch()
         } else {
           return false;
         }

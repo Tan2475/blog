@@ -30,7 +30,8 @@ export default {
   },
   computed: {
     menu_bars() {
-      return this.$store.getters.menu_bars;
+      const { menu_bars } = this.$store.state
+      return menu_bars.filter(x=>x[0]!=="搜索")
     },
   },
   methods: {

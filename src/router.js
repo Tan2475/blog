@@ -31,9 +31,9 @@ export const constantRouterMap = [
   },
   // 文章列表
   {
-    path: '/postlist',
+    path: '/postlist/:type',
     name: 'postlist',
-    component: () => import('@/views/blog/postList/PostList.vue')
+    component: () => import('@/views/blog/postList/PostList.vue'), props: true
   },
   // 每日一P
   {
@@ -46,6 +46,12 @@ export const constantRouterMap = [
     path:"/search",
     name: "search",
     component: ()=>import("@/views/blog/search/Search.vue")
+  },
+  // 分类页面
+  {
+    path:"/category",
+    name: "Category",
+    component: ()=>import("@/views/blog/category/Category.vue")
   }
 ]
  

@@ -1,7 +1,7 @@
 import postApi from '@/api/post.js'
 import { Message } from 'element-ui'
 
-const { postList, post, upLoad, search } = postApi
+const { postList, post, upLoad, search, category, postType } = postApi
 
 const state = {
   postList:{
@@ -10,6 +10,7 @@ const state = {
   },
   post:{},
   upStatus: false,
+  categorys:[]
 }
 
 const getters = {}
@@ -23,6 +24,9 @@ const mutations = {
   },
   UPDATEPOST(state, payload){
     state.upStatus = payload
+  },
+  SAVECATEGORY(state, payload){
+    state.categorys = payload.data
   }
 }
 
@@ -32,7 +36,7 @@ const actions = {
     if(res.data.success){
       commit('SAVEPOSTLIST', res.data)
     }else{
-      Message.error('请求错误')
+      Message.error('获取失败')
     }
   },
   async fetchPost({commit}, params){
@@ -40,7 +44,7 @@ const actions = {
     if(res.data.success){
       commit('SAVEPOST', res.data)
     }else{
-      Message.error('请求错误')
+      Message.error('获取失败')
     }
   },
   async upDatePost({commit},params){
@@ -49,7 +53,7 @@ const actions = {
       commit('UPDATEPOST', true)
       Message.success('上传成功')
     }else{
-      Message.error('请求错误')
+      Message.error('上传失败，请稍后重试')
     }
   },
   async searchPost({commit}, params){
@@ -58,6 +62,22 @@ const actions = {
       commit('SAVEPOSTLIST', res.data)
     }else{
       Message.error('未搜索到相关文章，请更换关键字')
+    }
+  },
+  async fetchCategory({commit}){
+    const res = await category()
+    if(res.data.success){
+      commit('SAVECATEGORY', res.data)
+    }else{
+      Message.error("请求失败，请稍后重试")
+    }
+  },
+  async selectType({commit}, params){
+    const res = await postType(params)
+    if(res.data.success){
+      commit('SAVEPOSTLIST', res.data)
+    }else{
+      Message.error('获取失败')
     }
   }
 }

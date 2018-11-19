@@ -39,21 +39,14 @@ const actions = {
   },
 
   // 用户登录
-  LoginByUsername({commit}, userInfo){
+  async LoginByUsername({commit}, userInfo){
     const username = userInfo.userName
     const password = userInfo.pass
-
-    return new Promise((resolve, reject)=>{
-      loginByUsername({username, password}).then(response=>{
-        const data = response.data
-        commit("SET_TOKEN", data.token)
-        setToken(data.token)
-        Message.success("登录成功")
-        resolve()
-      }).catch(error=>{
-        reject(error)
-      })
-    })
+    const res = await loginByUsername({username, password})
+    const data = res.data
+    commit("SET_TOKEN", data.token)
+    setToken(data.token)
+    return res
   },
 
   // 获取用户roles

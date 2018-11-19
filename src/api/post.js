@@ -17,5 +17,13 @@ export default {
   // 搜索post
   search(params){
     return api.get(`/api/post/search?${stringify(params)}`)
+  },
+  // 获取文章类型
+  category(){
+    return api.get("/api/post/category")
+  },
+  // 获取指定类型文章
+  postType(params){
+    return api.get(`/api/post/${params}`)
   }
 }
