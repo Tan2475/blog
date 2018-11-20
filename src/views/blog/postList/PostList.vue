@@ -5,9 +5,11 @@
       v-for="(post,index) in posts"
       :key="index" 
       :post="post"/>
-    <i 
-      class="el-icon-loading" 
-      v-show="isLoading" />
+    <div
+      class="more"
+      v-show="isLoading"
+      @click="addPost"
+    ><strong>+</strong> 加载更多</div>
   </div>
   
 </template>
@@ -30,49 +32,33 @@ export default {
       isLoading:false
     };  
   },
-  props:{
-    type:{
-      type:String,
-      default(){return ""}
-    }
-  },
   components: { postcard },
   computed: { 
     ...mapState(['postList']),
  },
   methods: {
-    ...mapActions(['fetchPostList', "selectType"]),
+    ...mapActions(['fetchPostList']),
     getPostList(){
-      if(this.type === "all"){
-        this.fetchPostList(this.params)
-      }else{
-        this.selectType(this.type)
-      }
+      this.fetchPostList(this.params).then(()=>this.isLoading=true)
     },
+    addPost(){
+      this.fetchPostList({pageNo:this.postList.pageNo+1,pageSize:10})
+    }
   },
   watch:{
-    $route(to){
-      if (to.path === "/postlist/all"){
-        this.fetchPostList(this.params)
-      }
-    },
     postList(){
       this.posts = [...this.posts, ...this.postList.data]
       return this.posts
     }
   },
-  beforeMount(){
-    this.getPostList()  
+  beforeRouteLeave(to, from, next){
+    if(to.name !== "post"){
+      from.meta.keepAlive = false
+    }
+    next()
   },
-  mounted(){
-    window.addEventListener("scroll",()=>{
-     let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 200
-      if(bottomOfWindow && this.isLoading === false ){
-          this.isLoading = true
-          let pageNo = this.postList.pageNo + 1
-          this.fetchPostList({pageNo, pageSize:10}).then(()=>this.isLoading=false).catch(()=>this.isLoading=true)
-      }
-    }, false)
+  created () {
+    this.getPostList()
   }
 };
 </script>
@@ -88,13 +74,28 @@ export default {
   font-size: 20px;
   color: #0096fa;
 }
+.more{
+  color: rgb(0, 150, 250);
+  width: 100%;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  text-align: center;
+  font-weight: 500;
+  padding: 12px 0px;
+  font-size: 14px;
+  border-radius: 4px;
+ 
+}
 
 @media (max-width: 700px) {
   .PostList {
     width: 100%;
   }
-  .pagination{
-    margin-top: 20px;
+  .more{
+    margin-top:-20px;
   }
 }
 </style>

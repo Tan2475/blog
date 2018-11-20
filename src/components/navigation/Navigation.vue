@@ -11,12 +11,11 @@
             :default-active="activeIndex"
             mode="horizontal" 
             router >
-            <template v-for="(item, index) in menu_bars">
-              <el-menu-item 
-                :index="item[1]" 
-                :key="index"
-                :style="menu">{{ item[0] }}</el-menu-item>            
-            </template>
+            <el-menu-item
+              v-for="(item, index) in menu_bars"
+              :index="item[1]" 
+              :key="index"
+              :style="menu">{{ item[0] }}</el-menu-item>            
           </el-menu>
         </div>
       </div>
@@ -84,10 +83,6 @@ nav {
   font-size: 16px;
   margin: 0 auto;
 }
-.right{
-  display: flex;
-  align-items: center;
-}
 .homeback {
   font-family: 'Indie Flower', cursive;
   font-size: 30px;
@@ -126,6 +121,8 @@ nav {
     padding-left: 20px;
   }
   .menu_item{
+    display: flex;
+    justify-content: center;
     width: 100vw;
     height: 30px;
   }

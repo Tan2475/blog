@@ -11,13 +11,13 @@ export const constantRouterMap = [
     name: 'home',
     component:() => import('@/views/blog/home/Home.vue')
   },
-   // about me 
+   // 关于我
    {
     path: '/me',
     name: 'me',
     component: () => import('@/views/blog/me/Me.vue')
   },
-  // post
+  // 文章详情
   {
     path: '/post/:pid',
     name: 'post',
@@ -33,7 +33,8 @@ export const constantRouterMap = [
   {
     path: '/postlist/:type',
     name: 'postlist',
-    component: () => import('@/views/blog/postList/PostList.vue'), props: true
+    meta: {keepAlive: true},
+    component: () => import('@/views/blog/postList/PostList.vue')
   },
   // 每日一P
   {
@@ -47,12 +48,19 @@ export const constantRouterMap = [
     name: "search",
     component: ()=>import("@/views/blog/search/Search.vue")
   },
-  // 分类页面
+  // 标签页面
   {
     path:"/category",
     name: "Category",
     component: ()=>import("@/views/blog/category/Category.vue")
-  }
+  },
+  // 分类文章列表
+  {
+    path:"/type/:type",
+    name:"typepost",
+    meta:{keepAlive:true},
+    component: () => import("@/views/blog/category/TypePost.vue"), props:true
+  },
 ]
  
 export const asyncRouterMap = [

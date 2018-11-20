@@ -32,6 +32,14 @@ export default {
   methods:{
     ...mapActions(['fetchPost'])
   },
+  beforeRouteLeave(to, from, next){
+    if(to.name === "postlist"){
+      to.meta.keepAlive = true
+    }else{
+      to.meta.keepAlive = false
+    }
+    next()
+  },
   created(){
     this.fetchPost(this.params)
   }

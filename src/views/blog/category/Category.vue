@@ -35,7 +35,7 @@ export default {
     showPostList(category){
       const patter = /\s*\S*/
       const type = category.match(patter)[0]
-      this.$router.replace({name:"postlist", params:{type}})
+      this.$router.replace({name:"typepost", params:{ type }})
     },
   },
   created(){

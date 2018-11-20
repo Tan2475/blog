@@ -7,13 +7,23 @@
       <div 
         ref="container" 
         class="container">
-        <transition 
+        <transition
           name="view"
           mode="out-in"
           enter-active-class="animated fadeIn"
           leave-active-class="animated fadeOut"
           :duration="300">
-          <router-view />
+          <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"/>    
+          </keep-alive>
+        </transition>  
+        <transition
+          name="view"
+          mode="out-in"
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+          :duration="300">
+          <router-view v-if="!$route.meta.keepAlive"/>
         </transition>
       </div>
     </div>
