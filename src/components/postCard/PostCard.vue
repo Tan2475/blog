@@ -64,7 +64,7 @@ export default {
   background: rgba(255, 255, 255, 0.92);
   border-radius: 6px;
   padding: 14px;
-  margin-bottom: 0.22rem;
+  margin-bottom: 18px;
   font-size: 14px;
   line-height: 2;
   color: rgb(0, 0, 0);

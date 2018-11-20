@@ -19,7 +19,7 @@ export default {
   },
   props:{
     pid:{
-      type:Number,
+      type:[Number,String],
       default(){
         return 1
       }

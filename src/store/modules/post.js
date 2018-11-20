@@ -32,24 +32,25 @@ const mutations = {
 
 const actions = {
   async fetchPostList({commit}, params){
-    const res = await postList(params)
-    if(res.data.success){
+    const res = await postList(params).catch(()=> false)
+    if(res && res.data.success){
       commit('SAVEPOSTLIST', res.data)
     }else{
-      Message.error('获取失败')
+      Message.error('获取文章列表失败')
+      return new Promise( (resolve,reject) =>reject())
     }
   },
   async fetchPost({commit}, params){
-    const res = await post(params)
-    if(res.data.success){
+    const res = await post(params).catch(()=>false)
+    if(res && res.data.success){
       commit('SAVEPOST', res.data)
     }else{
-      Message.error('获取失败')
+      Message.error('获取文章失败')
     }
   },
   async upDatePost({commit},params){
-    const res = await upLoad(params)
-    if(res.data.success){
+    const res = await upLoad(params).catch(()=>false)
+    if(res && res.data.success){
       commit('UPDATEPOST', true)
       Message.success('上传成功')
     }else{

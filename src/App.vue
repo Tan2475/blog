@@ -55,12 +55,10 @@ export default {
       this.h_show = to.name == "home" ? true : false
     }
   },
-
-
-  mounted() {
+  mounted(){
     // 检测当前路由
-    this.h_show = window.location.pathname == "/" ? true : false;  
-  }
+    this.h_show = window.location.pathname == "/" ? true : false;   
+  },
 };
 </script>
 

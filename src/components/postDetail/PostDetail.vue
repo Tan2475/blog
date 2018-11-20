@@ -1,5 +1,7 @@
 <template>
-  <div id="post">
+  <div 
+    id="post" 
+    v-if="detail">
     <div class="postHeader">
       <div class="title">{{ detail.title }}</div>
       <div class="pInfo">
@@ -30,7 +32,7 @@
 
 <script>
 import markdown from '@/util/MdParse.js'
-import {getTime} from "@/util/time"
+import { getTime } from "@/util/time"
 
 export default {
   name: "PostDetail",
@@ -48,9 +50,7 @@ export default {
   computed: {
     postData(){
       const content = this.detail.content
-      if(content){
-        return markdown(content)
-      }
+      return markdown(content)
     },
     markList(){
       const mark = this.detail.mark
@@ -60,7 +60,9 @@ export default {
     },
     currentTime(){
       const time = this.detail.current_time
-      return getTime(time)
+      if(time){
+        return getTime(time)        
+      }
     }
   },
 };

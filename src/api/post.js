@@ -4,7 +4,7 @@ import api from './index.js'
 export default {
   // 请求post列表
   postList(params){
-    return api.get(`api/postlist?${stringify(params)}`)
+    return  api.get(`api/postlist?${stringify(params)}`)
   },
   // 请求post文章
   post(params){

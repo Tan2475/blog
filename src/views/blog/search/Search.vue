@@ -68,7 +68,7 @@ export default {
 .box{
   width: 100%;
   height: 40px;
-  margin-bottom: 0.22rem;
+  margin-bottom: 18px;
   line-height: 1.5;
   border: 1px solid #dcdfe6;
   border-radius: 4px;    
