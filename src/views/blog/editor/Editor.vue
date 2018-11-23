@@ -34,13 +34,13 @@
           </el-select>
         </div>
         <div class="el-buttons">
-          <el-button 
+          <el-button
             size="mini"
             type="default">清空</el-button>
           <el-button 
             size="mini"
             type="primary" 
-            :loading="loading"
+            :loading="isloading"
             @click="savePost">保存</el-button>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default {
           defaultMark:[],
           category:'',
           markList:[],
-          loading:false
+          isloading:false
         }
     },
     components:{ mavonEditor },
@@ -108,7 +108,8 @@ export default {
         const {
           content,title,mark,category,summary,currentTime
         } = this        
-        this.upDatePost({current_time: currentTime,title,category,mark,content,summary})
+        this.isloading = true
+        this.upDatePost({current_time: currentTime,title,category,mark,content,summary}).then(()=>this.isloading=false)
       }
     },
 }

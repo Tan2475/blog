@@ -1,8 +1,8 @@
 <template>
   <el-form 
     :model="ruleForm" 
-    status-icon 
     :rules="rules"
+    status-icon 
     ref="ruleForm"
     label-width="60px">
     <el-form-item

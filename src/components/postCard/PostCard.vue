@@ -113,7 +113,7 @@ export default {
 }
 
 .tips .fa-calendar {
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 
 @media (max-width: 700px) {

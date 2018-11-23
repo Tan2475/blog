@@ -1,14 +1,18 @@
 <template>
   <div 
-    id="post" 
+    id="post"
     v-if="detail">
     <div class="postHeader">
       <div class="title">{{ detail.title }}</div>
       <div class="pInfo">
         <div class="tips">
           <span><i 
+            class="fa fa-calendar" 
+            aria-hidden="true" />{{ currentTime }}</span>
+          <span><i 
             class="fa fa-tags" 
-            aria-hidden="true" />{{ detail.category }}</span>
+            aria-hidden="true" 
+            style="margin-left:1.5rem"/>{{ detail.category }}</span>
           <el-tag
             style='margin-left: 20px'
             size='mini'
@@ -16,10 +20,6 @@
             :key="index">
             {{ item }}
           </el-tag>
-          <span><i 
-            class="fa fa-calendar" 
-            aria-hidden="true" 
-            style='padding-left:40px'/>{{ currentTime }}</span>
         </div>
       </div>
     </div>

@@ -30,6 +30,13 @@
     <img 
       src="./assets/image/bg.jpg" 
       alt="背景图" >
+    <div 
+      class="top"
+      @click="scroll">
+      <i  
+        class="el-icon-arrow-up"
+        style="color:#fff"/>
+    </div>
   </div>
 </template>
 
@@ -43,6 +50,7 @@ export default {
     return {
       h_show: false,
       menu_bars:"",
+      speed:10
     };
   },
   components: { navigation },
@@ -63,6 +71,18 @@ export default {
     // 回退检测
     homeBack(to) {
       this.h_show = to.name == "home" ? true : false
+    },
+    toTop(){
+      let top = document.documentElement.scrollTop || document.body.scrollTop
+      if(top>0){
+        this.speed+=50
+        document.documentElement.scrollTop = document.body.scrollTop = top-this.speed
+        setTimeout(this.toTop,40)
+      }
+    },
+    // 回到顶部
+    scroll(){
+      this.toTop()
     }
   },
   mounted(){
@@ -72,18 +92,15 @@ export default {
 };
 </script>
 
-
-<style>
+<style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-}
-
-#app > img {
+  & > img {
   position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: cover;}
 }
 
 .container {
@@ -91,6 +108,22 @@ export default {
   z-index: 2;
 }
 
+.top{
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(37, 37, 37, 0.2);
+  i{
+    font-size: 20px;
+  }
+}
 
 @media (max-width: 700px) {
   #app > img {
@@ -102,3 +135,4 @@ export default {
   }
 }
 </style>
+
