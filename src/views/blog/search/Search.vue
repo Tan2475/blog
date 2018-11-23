@@ -7,6 +7,9 @@
         placeholder="请输入关键字搜索"
         v-model="keyword"
         @keyup.enter="submit">
+      <i 
+        class="el-icon-loading"
+        v-show="isLoading"/>
     </div>
     <transition-group
       name="view"
@@ -37,6 +40,7 @@ export default {
       keyword:"",
       border:{},
       showPost:false,
+      isLoading:false
     }
   },
   components: { postcard },
@@ -47,7 +51,8 @@ export default {
     ...mapActions(["searchPost"]),
     submit(){
       this.showPost = true
-      this.searchPost({keyword:this.keyword})
+      this.isLoading = true
+      this.searchPost({keyword:this.keyword}).then(()=>this.isLoading=false)
     }
   },
   mounted () {
@@ -66,6 +71,7 @@ export default {
   margin: 0 auto;
 }
 .box{
+  position:relative;
   width: 100%;
   height: 40px;
   margin-bottom: 18px;
@@ -82,6 +88,13 @@ export default {
       outline: none;
       border-color: #409eff;
     }
+  }
+  .el-icon-loading{
+    position: absolute;
+    top: calc(50% - 10px);
+    font-size: 20px;
+    right: 10px;
+    color: #ccc;
   }
 }
 @media (max-width: 700px) {

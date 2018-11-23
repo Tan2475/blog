@@ -33,11 +33,14 @@
 <script>
 import markdown from '@/util/MdParse.js'
 import { getTime } from "@/util/time"
+import { Loading } from "element-ui"
 
 export default {
   name: "PostDetail",
   data() {
-    return {};
+    return {
+      loading:null
+    };
   },
   props:{
     detail:{
@@ -50,11 +53,19 @@ export default {
   computed: {
     postData(){
       const content = this.detail.content
-      return markdown(content)
+      const loadingInstance = Loading.service({text:"请稍等片刻。。"})
+      this.$nextTick(()=>{
+        if(this.postData !== undefined){
+          loadingInstance.close()
+        }
+      })
+      if(content){
+        return markdown(content)
+      }
     },
     markList(){
       const mark = this.detail.mark
-      if(mark){
+      if(mark){ 
         return mark.split(",")
       }
     },

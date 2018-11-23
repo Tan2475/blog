@@ -7,9 +7,14 @@
       :post="post"/>
     <div
       class="more"
-      v-show="isLoading"
       @click="addPost"
-    ><strong>+</strong> 加载更多</div>
+      v-show="isShow"
+    >
+      <span 
+        v-show="!isLoading"
+        style="color:#ccc"><i class="el-icon-loading"/> 正在加载</span>
+      <span v-show="isLoading"><strong>+</strong> 加载更多</span>
+    </div>
   </div>
   
 </template>
@@ -29,7 +34,8 @@ export default {
         pageSize:10,
       },
       posts:[],
-      isLoading:false
+      isLoading:true,
+      isShow:false
     };  
   },
   components: { postcard },
@@ -39,10 +45,11 @@ export default {
   methods: {
     ...mapActions(['fetchPostList']),
     getPostList(){
-      this.fetchPostList(this.params).then(()=>this.isLoading=true)
+      this.fetchPostList(this.params).then(()=>this.isShow=true)
     },
     addPost(){
-      this.fetchPostList({pageNo:this.postList.pageNo+1,pageSize:10})
+      this.isLoading = false
+      this.fetchPostList({pageNo:this.postList.pageNo+1,pageSize:10}).then(()=>this.isLoading=true).catch(()=>this.isLoading=true)
     }
   },
   watch:{
@@ -63,7 +70,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .PostList {
   width: 60%;
   height: 100%;
@@ -87,7 +94,10 @@ export default {
   padding: 12px 0px;
   font-size: 14px;
   border-radius: 4px;
- 
+  .el-icon-loading {
+    font-size: 16px;
+    color: #cccccc;
+  }
 }
 
 @media (max-width: 700px) {
