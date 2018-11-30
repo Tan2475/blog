@@ -32,6 +32,11 @@ export default {
   methods:{
     ...mapActions(['fetchPost'])
   },
+  watch:{
+    $route(){
+      this.fetchPost(this.params)
+    }
+  },
   beforeRouteLeave(to, from, next){
     if(to.name === "postlist"){
       to.meta.keepAlive = true

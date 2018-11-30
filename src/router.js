@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Post from '@/views/blog/post/Post.vue'
 
 Vue.use(Router)
 
@@ -21,7 +20,7 @@ export const constantRouterMap = [
   {
     path: '/post/:pid',
     name: 'post',
-    component: Post, props: true
+    component: ()=> import("@/views/blog/post/Post.vue"), props: true
   },
    // 登录
    {

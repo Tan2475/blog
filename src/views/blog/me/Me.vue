@@ -22,6 +22,11 @@ export default {
     methods: {
       ...mapActions(['fetchUserPost'])
     },  
+    watch:{
+      $route(){
+        this.fetchUserPost()
+      }
+    },
     created () {
       this.fetchUserPost()
     }

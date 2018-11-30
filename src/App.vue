@@ -129,7 +129,7 @@ export default {
   #app > img {
     display: none;
   }
-
+  
   nav {
     background: #fff;
   }
