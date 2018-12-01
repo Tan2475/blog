@@ -68,20 +68,7 @@ export default {
         return{
           content:'',
           title:'',
-          defaultCategory:[
-            {
-              value:"技术",
-              label:"技术"
-            },
-            {
-              value:"杂谈",
-              label:"杂谈"
-            },
-            {
-              value:"趣闻",
-              label:"趣闻"
-            },
-          ],
+          defaultCategory:[],
           defaultMark:[],
           category:'',
           markList:[],
@@ -118,20 +105,18 @@ export default {
 <style lang="scss">
 
 .markBox{
-  position: fixed;
-  top: 50px;
   width: 100%;
   height: 100%;
 }
 
 .editor{
-  width:80%;
-  height: calc(100% - 60px);
+  width: 100%;
+  height: 600px;
   padding-bottom: 60px;
 }
 
 .postInfo{
-  width: 80%;
+  width: 100%;
   .post_title{
     width: calc(100% - 20px);
     height: 80px;

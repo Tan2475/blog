@@ -14,7 +14,7 @@ export const constantRouterMap = [
    {
     path: '/me',
     name: 'me',
-    component: () => import('@/views/blog/me/Me.vue')
+    component:() => import('@/views/blog/me/Me.vue')
   },
   // 文章详情
   {

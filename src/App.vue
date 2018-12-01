@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <div
-      class="blog">
-      <navigation 
-        v-show="navShow"/>
+    <!-- blog页面 -->
+    <div 
+      class="blog"
+      v-if="!isAdmin">
+      <navigation v-show="navShow"/>
       <div 
         ref="container" 
         class="container">
@@ -27,9 +28,27 @@
         </transition>
       </div>
     </div>
+    <!-- 后台管理页面 -->
+    <div 
+      class="admin"
+      v-if="isAdmin">
+      <el-container>
+        <el-aside>
+          <Side/>
+        </el-aside>
+        <el-container>
+          <el-header height="100px">{{sideBar}}</el-header>
+          <el-main>
+            <editor/>
+          </el-main>
+        </el-container>
+      </el-container>
+    </div>
+    <!-- 背景图 -->
     <img 
       src="./assets/image/bg.jpg" 
       alt="背景图" >
+    <!-- 回到顶部按钮 -->
     <div 
       class="top"
       @click="scroll">
@@ -43,24 +62,27 @@
 
 <script>
 import navigation from "@/components/navigation/Navigation.vue";
+import Side from "@/components/side/Side.vue";
+import editor from "@/views/admin/editor/Editor.vue"
 
 export default {
   name: "App",
   data() {
     return {
-      h_show: false,
-      menu_bars:"",
-      speed:10
+      show: false,
+      speed: 10,
+      isAdmin: true,
+      sideBar: "admin"
     };
   },
-  components: { navigation },
+  components: { navigation, Side, editor },
   watch: {
     $route: "homeBack"
   },
   computed: {
      // 头部导航栏
     navShow() {
-      if (!this.h_show & !(window.location.pathname == "/auth")) {
+      if (!this.show & !(window.location.pathname == "/auth")) {
         return true
       } else {
         return false
@@ -70,7 +92,7 @@ export default {
   methods: {
     // 回退检测
     homeBack(to) {
-      this.h_show = to.name == "home" ? true : false
+      this.show = to.name == "home" ? true : false
     },
     toTop(){
       let top = document.documentElement.scrollTop || document.body.scrollTop
@@ -87,7 +109,7 @@ export default {
   },
   mounted(){
     // 检测当前路由
-    this.h_show = window.location.pathname == "/" ? true : false;   
+    this.show = window.location.pathname == "/" ? true : false;   
   },
 };
 </script>
@@ -106,6 +128,25 @@ export default {
 .container {
   position: relative;
   z-index: 2;
+}
+
+.admin{
+  position: relative;
+  z-index: 10;
+  background-color: #fff;
+  .el-container{
+    height: 100vh;
+    .el-aside{
+      width: 20%;
+      background-color: #262a30;
+    }
+    .el-header{
+      font-size: 24px;
+      line-height: 100px;
+      font-weight: bold;
+      border-bottom: solid 1px #e6e6e6;
+    }
+  }
 }
 
 .top{

@@ -8,6 +8,10 @@ const state = {
     data:[],
     total:0,
   },
+  searchList:{
+    data:[],
+    total:0
+  },
   post:{},
   upStatus: false,
   categorys:[]
@@ -27,6 +31,9 @@ const mutations = {
   },
   SAVECATEGORY(state, payload){
     state.categorys = payload.data
+  },
+  SAVESEARCHLIST(state, payload){
+    state.searchList = payload
   }
 }
 
@@ -60,7 +67,7 @@ const actions = {
   async searchPost({commit}, params){
     const res = await search(params)
     if(res.data.success){
-      commit('SAVEPOSTLIST', res.data)
+      commit('SAVESEARCHLIST', res.data)
     }else{
       Message.error('未搜索到相关文章，请更换关键字')
     }

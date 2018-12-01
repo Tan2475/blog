@@ -102,7 +102,6 @@ nav {
   opacity: 0;
 }
 
-
 @media (max-width: 700px) {
   header {
     padding-bottom: 0;

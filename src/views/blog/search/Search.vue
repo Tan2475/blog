@@ -19,7 +19,7 @@
       :duration="300">
       <template
         v-if = "showPost"
-        v-for="(post,index) in postList.data" >
+        v-for="(post,index) in searchList.data" >
         <postcard 
           :key="index" 
           :post="post"/>
@@ -45,7 +45,7 @@ export default {
   },
   components: { postcard },
   computed:{
-    ...mapState(["postList"]),
+    ...mapState(["searchList"]),
   },
   methods:{
     ...mapActions(["searchPost"]),

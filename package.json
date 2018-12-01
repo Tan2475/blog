@@ -26,6 +26,7 @@
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "axios": "^0.18.0",
+    "eslint": "^5.9.0",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-element": "^1.0.0",
@@ -46,7 +47,8 @@
     "rules": {
       "vue/no-async-in-computed-properties": "warning",
       "vue/no-dupe-keys": "warning",
-      "vue/no-duplicate-attributes": "warning"
+      "vue/no-duplicate-attributes": "warning",
+      "vue/valid-template-root": "warning"
     }
   },
   "postcss": {
