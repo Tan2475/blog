@@ -37,9 +37,9 @@
           <Side/>
         </el-aside>
         <el-container>
-          <el-header height="100px">{{sideBar}}</el-header>
+          <el-header height="100px">{{ sideBar }}</el-header>
           <el-main>
-            <editor/>
+           <router-view/> 
           </el-main>
         </el-container>
       </el-container>
@@ -63,7 +63,6 @@
 <script>
 import navigation from "@/components/navigation/Navigation.vue";
 import Side from "@/components/side/Side.vue";
-import editor from "@/views/admin/editor/Editor.vue"
 
 export default {
   name: "App",
@@ -75,7 +74,7 @@ export default {
       sideBar: "admin"
     };
   },
-  components: { navigation, Side, editor },
+  components: { navigation, Side },
   watch: {
     $route: "homeBack"
   },

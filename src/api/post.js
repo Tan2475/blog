@@ -14,16 +14,25 @@ export default {
   upLoad(params){
     return api.post('api/post', stringify(params))
   },
+  // 更新文章
+  upDate(params){
+    return api.put('api/post', stringify(params))
+  },
+  // 删除文章
+  delete_(params){
+    return api.delete(`api/post?${stringify(params)}`)
+  },
   // 搜索post
   search(params){
-    return api.get(`/api/post/search?${stringify(params)}`)
+    return api.get(`api/post/search?${stringify(params)}`)
   },
   // 获取文章类型
   category(){
-    return api.get("/api/post/category")
+    return api.get("api/post/category")
   },
   // 获取指定类型文章
   postType(params){
-    return api.get(`/api/post/${params}`)
-  }
+    return api.get(`api/post/${params}`)
+  },
+  
 }

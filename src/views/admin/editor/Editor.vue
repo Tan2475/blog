@@ -41,7 +41,7 @@
             size="mini"
             type="primary" 
             :loading="isloading"
-            @click="savePost">保存</el-button>
+            @click="savePost">{{ active }}</el-button>
         </div>
       </div>
     </div>
@@ -66,14 +66,20 @@ export default {
     name:"MorkDown",
     data(){ 
         return{
-          content:'',
-          title:'',
+          content:  this.postDetail.content || '',
+          title: this.postDetail.title || '',
+          category: this.postDetail.category || '',
           defaultCategory:[],
           defaultMark:[],
-          category:'',
           markList:[],
-          isloading:false
+          isloading:false,
         }
+    },
+    props:{
+      postDetail:{
+        type:Object,
+        default(){return{}}
+      }
     },
     components:{ mavonEditor },
     computed: {
@@ -87,18 +93,37 @@ export default {
       },
       currentTime(){
         return setTime()
+      },
+      active(){
+        return this.postDetail.title != undefined ? "更新" : "保存"
       }
     },
     methods:{
-      ...mapActions(['upDatePost']),
+      ...mapActions(['setPost','upDatePost']),
       savePost(){
         const {
           content,title,mark,category,summary,currentTime
         } = this        
         this.isloading = true
-        this.upDatePost({current_time: currentTime,title,category,mark,content,summary}).then(()=>this.isloading=false)
+        let detail = {current_time: currentTime,title,category,mark,content,summary}
+        if(this.active === "保存"){
+          this.setPost(detail).then(()=>{
+            this.isloading=false
+            setTimeout(()=>{this.$router.push({name:"management"})}, 1000)
+          })
+        }else{
+          detail.id = this.postDetail.id
+          this.upDatePost(detail).then(()=>this.isloading=false)
+        }
+
       }
     },
+    mounted(){
+      const mark = this.postDetail.mark
+      if(mark){
+        this.markList = mark.split(",")
+      }
+    }
 }
 </script>
 

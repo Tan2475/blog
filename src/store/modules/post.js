@@ -1,7 +1,7 @@
 import postApi from '@/api/post.js'
 import { Message } from 'element-ui'
 
-const { postList, post, upLoad, search, category, postType } = postApi
+const { postList, post, upLoad, upDate, delete_, search, category, postType } = postApi
 
 const state = {
   postList:{
@@ -55,13 +55,31 @@ const actions = {
       Message.error('获取文章失败')
     }
   },
-  async upDatePost({commit},params){
+  async setPost({commit},params){
     const res = await upLoad(params).catch(()=>false)
     if(res && res.data.success){
       commit('UPDATEPOST', true)
       Message.success('上传成功')
     }else{
       Message.error('上传失败，请稍后重试')
+    }
+  },
+  async upDatePost({commit},params){
+    const res = await upDate(params).catch(()=>false)
+    if(res && res.data.success){
+      commit('UPDATEPOST', true)
+      Message.success('更新成功')
+    }else{
+      Message.error('更新失败，请稍后重试')
+    }
+  },
+  async deletePost({commit},params){
+    const res = await delete_(params).catch(()=>false)
+    if(res && res.data.success){
+      commit('UPDATEPOST', true)
+      Message.success('删除成功')
+    }else{
+      Message.error('删除失败，请稍后重试')
     }
   },
   async searchPost({commit}, params){
