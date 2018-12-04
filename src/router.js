@@ -73,13 +73,14 @@ export const asyncRouterMap = [
   {
     path:"/admin/editor",
     name:'editor',
-    meta: {roles:["admin", "tanbin"]},
+    meta: {roles:["admin", "tanbin"], type:"admin"},
     component:()=> import('@/views/admin/editor/Editor.vue')
   },
+  // 文章管理
   {
     path:"/admin/management",
     name:"management",
-    meta: {roles:["admin", "tanbin"]},
+    meta: {roles:["admin", "tanbin"], type:"admin"},
     component:()=> import('@/views/admin/postManagement/index.vue')
   },
   // 404页面
@@ -96,6 +97,6 @@ export default new Router({
       return {x:0,y:0}
     }
   },
-  routes: asyncRouterMap
+  routes: constantRouterMap 
 })
 

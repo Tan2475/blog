@@ -39,7 +39,7 @@
         <el-container>
           <el-header height="100px">{{ sideBar }}</el-header>
           <el-main>
-           <router-view/> 
+            <router-view /> 
           </el-main>
         </el-container>
       </el-container>
@@ -70,7 +70,7 @@ export default {
     return {
       show: false,
       speed: 10,
-      isAdmin: true,
+      isAdmin: false,
       sideBar: "admin"
     };
   },
@@ -91,6 +91,7 @@ export default {
   methods: {
     // 回退检测
     homeBack(to) {
+      this.isAdmin = to.meta.type ? true : false
       this.show = to.name == "home" ? true : false
     },
     toTop(){

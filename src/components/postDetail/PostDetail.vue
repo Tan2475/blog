@@ -27,6 +27,14 @@
       id='markdown-preview-body'
       v-lightCode
       v-html='postData'/>
+    <!-- 来必力City版安装代码 -->
+    <div 
+      id="lv-container" 
+      style="position: relative;z-index: 100;margin:auto 20px" 
+      data-id="city" 
+      data-uid="MTAyMC80MTQxNy8xNzk2NA==">
+    </div>
+    <!-- City版安装代码已完成 -->
   </div>
 </template>
 
@@ -39,7 +47,7 @@ export default {
   name: "PostDetail",
   data() {
     return {
-      loading:null
+      loading: null,
     };
   },
   props:{
@@ -76,6 +84,22 @@ export default {
       }
     }
   },
+  methods:{
+    laibili(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    }
+  },
+  mounted(){
+    this.laibili(document, "script")
+  }
 };
 </script>
 

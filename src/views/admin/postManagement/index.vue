@@ -9,20 +9,20 @@
         <el-table-column
           prop="current_time"
           label="创建时间"
-          ></el-table-column>
+        />
         <el-table-column
           prop="title"
           label="标题"
-          ></el-table-column>
+        />
         <el-table-column
           prop="category"
           label="分类"
-          >
+        >
           <template slot-scope="scope">
             <el-tag 
               type="info"
               size="small">
-              {{scope.row.category}}
+              {{ scope.row.category }}
             </el-tag>
           </template>
         </el-table-column>
@@ -46,8 +46,7 @@
         <el-pagination
           layout="prev, pager, next"
           :total="this.postList.total"
-          @current-change="pageChange">
-        </el-pagination>
+          @current-change="pageChange"/>
       </div>
     </div>
     <div 
@@ -57,7 +56,7 @@
         type="text"
         icon="el-icon-d-arrow-left"
         @click="backList">返回文章列表</el-button>
-      <editor :postDetail="currentRow"/>
+      <editor :post-detail="currentRow"/>
     </div>
   </div>
 </template>
