@@ -10,8 +10,7 @@
     <div
       class="more"
       @click="addPost"
-      v-show="isShow"
-    >
+      v-show="isShow">
       <span 
         v-show="!isLoading"
         style="color:#ccc"><i class="el-icon-loading"/> 正在加载</span>

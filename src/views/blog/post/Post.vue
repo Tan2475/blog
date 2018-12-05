@@ -1,8 +1,11 @@
 <template>
-  <PostDetail 
-    v-show="!isLoading"
-    v-loading.fullscreen.lock="isLoading" 
-    :detail="post"/>
+  <div 
+    v-loading.fullscreen.lock="isLoading"
+    element-loading-text="努力加载中。。。">
+    <PostDetail 
+      v-if="!isLoading"
+      :detail="post"/>
+  </div>
 </template>
 
 <script>
@@ -18,7 +21,7 @@ export default {
       params:{
         pid: this.pid,
       },
-      isLoading: false,
+      isLoading: true,
     };
   },
   props:{
@@ -50,6 +53,7 @@ export default {
   }
 };
 </script>
+
 
 
 

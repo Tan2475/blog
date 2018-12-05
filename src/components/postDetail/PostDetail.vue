@@ -1,6 +1,7 @@
 <template>
   <div 
-    id="post">
+    id="post"
+    class="animated fadeIn faster">
     <div class="postHeader">
       <div class="title">{{ detail.title }}</div>
       <div class="pInfo">
@@ -27,7 +28,7 @@
       v-lightCode
       v-html='postData'/>
     <!-- 来必力City版安装代码 -->
-    <div 
+    <div
       id="lv-container" 
       style="position:relative;z-index:100;margin:auto 20px" 
       data-id="city" 
@@ -44,7 +45,7 @@ export default {
   name: "PostDetail",
   data() {
     return {
-      loading: null,
+      isShow: false,
     };
   },
   props:{
@@ -135,6 +136,15 @@ export default {
   color: #666;
   margin: 0 20px;
 }
+
+.init{
+  transform: translateY(40px)
+}
+
+.fade-active{
+  transition: all 0.3s ease-in
+}
+
 @media (max-width: 700px) {
   #post {
     width: 100%;
