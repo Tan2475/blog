@@ -1,6 +1,8 @@
 <template>
   <div 
-    class="PostList">
+    class="PostList"
+    v-loading.fullscreen.lock="!isShow"
+    element-loading-text="努力加载中。。。">
     <postcard
       v-for="(post,index) in posts"
       :key="index" 

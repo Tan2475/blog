@@ -1,7 +1,6 @@
 <template>
   <div 
-    id="post"
-    v-if="detail">
+    id="post">
     <div class="postHeader">
       <div class="title">{{ detail.title }}</div>
       <div class="pInfo">
@@ -14,7 +13,7 @@
             aria-hidden="true" 
             style="margin-left:1.5rem"/>{{ detail.category }}</span>
           <el-tag
-            style='margin-left: 20px'
+            style='margin-left:20px'
             size='mini'
             v-for="(item,index) in markList"
             :key="index">
@@ -30,18 +29,16 @@
     <!-- 来必力City版安装代码 -->
     <div 
       id="lv-container" 
-      style="position: relative;z-index: 100;margin:auto 20px" 
+      style="position:relative;z-index:100;margin:auto 20px" 
       data-id="city" 
-      data-uid="MTAyMC80MTQxNy8xNzk2NA==">
-    </div>
-    <!-- City版安装代码已完成 -->
+      data-uid="MTAyMC80MTQxNy8xNzk2NA=="/>
+      <!-- City版安装代码已完成 -->
   </div>
 </template>
 
 <script>
 import markdown from '@/util/MdParse.js'
 import { getTime } from "@/util/time"
-import { Loading } from "element-ui"
 
 export default {
   name: "PostDetail",
@@ -61,12 +58,6 @@ export default {
   computed: {
     postData(){
       const content = this.detail.content
-      const loadingInstance = Loading.service({text:"请稍等片刻。。"})
-      this.$nextTick(()=>{
-        if(this.postData !== undefined){
-          loadingInstance.close()
-        }
-      })
       if(content){
         return markdown(content)
       }
@@ -99,11 +90,11 @@ export default {
   },
   mounted(){
     this.laibili(document, "script")
-  }
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../assets/css/markdown.css';
 
 #post {

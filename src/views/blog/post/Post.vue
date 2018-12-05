@@ -1,5 +1,8 @@
 <template>
-  <PostDetail :detail="post"/>
+  <PostDetail 
+    v-show="!isLoading"
+    v-loading.fullscreen.lock="isLoading" 
+    :detail="post"/>
 </template>
 
 <script>
@@ -14,7 +17,8 @@ export default {
     return {
       params:{
         pid: this.pid,
-      }
+      },
+      isLoading: false,
     };
   },
   props:{
@@ -32,11 +36,6 @@ export default {
   methods:{
     ...mapActions(['fetchPost'])
   },
-  watch:{
-    $route(){
-      this.fetchPost(this.params)
-    }
-  },
   beforeRouteLeave(to, from, next){
     if(to.name === "postlist"){
       to.meta.keepAlive = true
@@ -45,8 +44,9 @@ export default {
     }
     next()
   },
-  created(){
-    this.fetchPost(this.params)
+  mounted(){
+    this.isLoading=true
+    this.fetchPost(this.params).then(()=>this.isLoading=false)
   }
 };
 </script>

@@ -17,18 +17,17 @@
       enter-active-class="animated fadeIn"
       leave-active-class="animated fadeOut"
       :duration="300">
-      <template
+      <postcard 
         v-if = "showPost"
-        v-for="(post,index) in searchList.data" >
-        <postcard 
-          :key="index" 
-          :post="post"/>
-      </template>
+        v-for="(post,index) in searchList.data" 
+        :key="index" 
+        :post="post"/>
     </transition-group>
   </div>
 </template>
 
 <script>
+import { Message } from "element-ui"
 import postcard from "@/components/postCard/PostCard.vue"
 import {createNamespacedHelpers} from "vuex"
 const {mapState, mapActions} = createNamespacedHelpers('post')
@@ -52,7 +51,12 @@ export default {
     submit(){
       this.showPost = true
       this.isLoading = true
-      this.searchPost({keyword:this.keyword}).then(()=>this.isLoading=false)
+      if(this.keyword){
+        this.searchPost({keyword:this.keyword}).then(()=>this.isLoading=false)
+      }else{
+        Message.warning("请输入有效关键字")
+        this.isLoading = false
+      }
     }
   },
   mounted () {
